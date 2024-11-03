@@ -31,7 +31,13 @@ SECRET_KEY = 'django-insecure-reav7f)kd@xpthtf=2_*h&t4f$^95@z4ybrh+r32n)%*fh$p!5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ssstik.uno','www.ssstik.uno']
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 
 # Application definition
