@@ -128,23 +128,57 @@
 <!-- FAQ Section -->
 <section class="faq-section">
     <div class="container">
-        <div class="section-header">
+        <!-- FAQ Header -->
+        <div class="faq-header">
             <h2>Frequently Asked Questions</h2>
-            <p>Get answers to common questions about our service</p>
+            <p>Everything you need to know about our TikTok downloader</p>
         </div>
 
-        <div class="faq-grid">
-            {% for faq in faqs %}
-            <div class="faq-item animate-on-scroll">
+        <!-- FAQ Items -->
+        <div class="faq-list">
+            <div class="faq-item">
                 <div class="faq-question">
-                    <h3>{{ faq.question }}</h3>
+                    <span>1</span>
+                    <h3>How to download TikTok videos?</h3>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>{{ faq.answer }}</p>
+                    <p>Simply paste the TikTok video URL in the input field above, select your preferred quality, and click download.</p>
                 </div>
             </div>
-            {% endfor %}
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>2</span>
+                    <h3>Is it safe to use?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, our service is completely free to use with no limitations or restrictions.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>3</span>
+                    <h3>Can I download videos without watermark?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can download TikTok videos without watermark in HD quality by using our service.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>4</span>
+                    <h3>What formats are supported?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We support MP4 video downloads in both HD and SD quality, as well as MP3 audio extraction.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
