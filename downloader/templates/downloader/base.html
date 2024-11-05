@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- Add these meta tags to your head section -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#8B5CF6">
+    <meta name="csrf-token" content="">
+
+    
+    <!-- SEO Meta Tags -->
+    <title>TikTok Video Downloader - Download Without Watermark HD</title>
+    <meta name="description" content="Free TikTok video downloader - Download TikTok videos without watermark in HD quality. Fast, secure, and unlimited downloads.">
+    <meta name="keywords" content="tiktok downloader, tiktok video download, download tiktok, no watermark, hd quality, mp4, mp3">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="TikTok Video Downloader - No Watermark">
+    <meta property="og:description" content="Download TikTok videos without watermark in HD quality">
+    <meta property="og:image" content="{% static 'downloader/images/preview.jpg' %}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ request.build_absolute_uri }}">
+    <meta property="twitter:title" content="TikTok Video Downloader">
+    <meta property="twitter:description" content="Download TikTok videos without watermark in HD quality">
+    <meta property="twitter:image" content="{% static 'downloader/images/preview.jpg' %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'downloader/images/favicon-32x32.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'downloader/images/apple-touch-icon.png' %}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'downloader/css/style.css' %}">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <a href="/how-to-save" class="nav-link">How to save TikTok video?</a>
+            <a href="/download-mp3" class="nav-link">Download TikTok MP3</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Brand Section -->
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fab fa-tiktok"></i>
+                        <h3>TikTok Downloader</h3>
+                    </div>
+                    <p class="footer-description">
+                        Free online tool to download TikTok videos without watermark in HD quality.
+                    </p>
+                    <div class="download-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">Downloads</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">Users</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#features"><i class="fas fa-chevron-right"></i>Features</a></li>
+                        <li><a href="#how-to"><i class="fas fa-chevron-right"></i>How to Use</a></li>
+                        <li><a href="#faq"><i class="fas fa-chevron-right"></i>FAQ</a></li>
+                        <li><a href="/privacy"><i class="fas fa-chevron-right"></i>Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Support Section -->
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <div class="support-content">
+                        <p>Have questions? We're here to help!</p>
+                        <a href="mailto:support@example.com" class="support-email">
+                            <i class="fas fa-envelope"></i>
+                            support@example.com
+                        </a>
+                        <div class="social-links">
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'downloader/js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

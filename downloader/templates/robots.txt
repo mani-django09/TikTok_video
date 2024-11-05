@@ -1,0 +1,7 @@
+# templates/robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://ssstik.uno/sitemap.xml

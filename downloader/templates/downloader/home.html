@@ -1,0 +1,224 @@
+{% extends 'downloader/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <!-- Title -->
+            <h1 class="main-title">TikTok Download Video</h1>
+            <p class="subtitle">TikTok Downloader, Download TikTok Video without watermark</p>
+
+            <!-- Download Form -->
+            <div class="download-form">
+                <div class="input-group">
+                    <div class="input-section">
+                        <input type="text" class="url-input" placeholder="Paste TikTok link here">
+                        <button class="paste-btn">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                        Download
+                    </button>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Why Choose Our TikTok Downloader?</h2>
+            <p>The best features of our TikTok video downloader</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Fast Download</h3>
+                <p>Download TikTok videos in seconds with our optimized servers</p>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Safe & Secure</h3>
+                <p>Your data is protected with advanced encryption</p>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">
+                    <i class="fas fa-infinity"></i>
+                </div>
+                <h3>Unlimited Downloads</h3>
+                <p>No limits on the number of videos you can download</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-to-section">
+    <div class="container">
+        <div class="instruction-card">
+            <h2>How to download TikTok without watermark?</h2>
+            
+            <div class="instruction-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Find a TT</h3>
+                        <p>- Play the video you'd like to save to your mobile device, using the TT app</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Copy the link</h3>
+                        <p>- Tap "Share" (the arrow button on top of your video), and then tap "Copy link"</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Save TikTok</h3>
+                        <p>- Go to the ss TikTok download without watermark service and paste the link in the text field on the page and tap on the "Save" button</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <div class="container">
+        <!-- FAQ Header -->
+        <div class="faq-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about our TikTok downloader</p>
+        </div>
+
+        <!-- FAQ Items -->
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>1</span>
+                    <h3>How to download TikTok videos?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Simply paste the TikTok video URL in the input field above, select your preferred quality, and click download.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>2</span>
+                    <h3>Is it safe to use?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, our service is completely free to use with no limitations or restrictions.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>3</span>
+                    <h3>Can I download videos without watermark?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can download TikTok videos without watermark in HD quality by using our service.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>4</span>
+                    <h3>What formats are supported?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We support MP4 video downloads in both HD and SD quality, as well as MP3 audio extraction.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Download Instructions -->
+
+<!-- Video Preview Template (Hidden by default) -->
+<div id="videoPreviewTemplate" style="display: none;">
+    <div class="video-preview animate-fade-in">
+        <div class="preview-content">
+            <div class="thumbnail-container">
+                <img src="" alt="Video thumbnail" class="video-thumbnail">
+                <div class="video-stats">
+                    <span><i class="fas fa-heart"></i> <span class="likes-count">0</span></span>
+                    <span><i class="fas fa-play"></i> <span class="views-count">0</span></span>
+                    <span><i class="fas fa-share"></i> <span class="shares-count">0</span></span>
+                </div>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title"></h3>
+                <p class="video-author"></p>
+            </div>
+        </div>
+
+        <div class="download-options">
+            <h4>Select Quality</h4>
+            <div class="quality-buttons">
+                <button class="quality-btn active" data-quality="hd">
+                    <i class="fas fa-video"></i>
+                    <div class="quality-info">
+                        <span>HD Quality</span>
+                        <small>High Definition MP4</small>
+                    </div>
+                </button>
+                <button class="quality-btn" data-quality="sd">
+                    <i class="fas fa-video"></i>
+                    <div class="quality-info">
+                        <span>SD Quality</span>
+                        <small>Standard Definition MP4</small>
+                    </div>
+                </button>
+                <button class="quality-btn" data-quality="audio">
+                    <i class="fas fa-music"></i>
+                    <div class="quality-info">
+                        <span>Audio Only</span>
+                        <small>MP3 Format</small>
+                    </div>
+                </button>
+            </div>
+
+            <div class="watermark-option">
+                <label class="toggle-container">
+                    <input type="checkbox" id="removeWatermark" checked>
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-label">Remove Watermark</span>
+                </label>
+            </div>
+
+            <button class="start-download-btn">
+                <i class="fas fa-download"></i>
+                <span>Download Now</span>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
