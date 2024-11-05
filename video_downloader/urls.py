@@ -19,6 +19,7 @@ from django.urls import path,include
 from downloader import views
 from django.conf import settings
 from django.conf.urls.static import static
+<<<<<<< HEAD
 from downloader.sitemaps import StaticViewSitemap
 from django.views.generic.base import TemplateView
 from django.contrib.sitemaps.views import sitemap
@@ -65,6 +66,12 @@ urlpatterns = [
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", 
          content_type="text/plain")),
     path('test-sitemap/', test_sitemap_view, name='test_sitemap'),
+=======
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('downloader.urls')),  # Include downloader URLs
+>>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
 
     #path('', views.home, name='home'),
     #path('process/', views.process_video, name='process_video'),

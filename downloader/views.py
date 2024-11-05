@@ -243,6 +243,7 @@ def download_file(request, filename):
         return JsonResponse({
             'status': 'error',
             'message': 'Error downloading file'
+<<<<<<< HEAD
         })
     
 def home(request):
@@ -253,3 +254,6 @@ def download_mp3(request):
 
 def how_to_save(request):
     return render(request, 'downloader/how_to_save.html')
+=======
+        })
+>>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a

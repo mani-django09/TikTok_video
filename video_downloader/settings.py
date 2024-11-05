@@ -14,13 +14,21 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+<<<<<<< HEAD
 # load_dotenv()
+=======
+load_dotenv()
+>>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
+<<<<<<< HEAD
 # DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
+=======
+DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
+>>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -31,6 +39,7 @@ SECRET_KEY = 'django-insecure-reav7f)kd@xpthtf=2_*h&t4f$^95@z4ybrh+r32n)%*fh$p!5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['*']
 
 SECURE_SSL_REDIRECT = False
@@ -38,6 +47,15 @@ SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SECURE_BROWSER_XSS_FILTER = False
 SECURE_CONTENT_TYPE_NOSNIFF = False
+=======
+ALLOWED_HOSTS = ['ssstik.uno','www.ssstik.uno']
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+>>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
 
 
 # Application definition
@@ -50,6 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'downloader',
+<<<<<<< HEAD
     'django.contrib.sitemaps',        # Add this
     'django.contrib.sites',           # Add this
 
@@ -67,6 +86,11 @@ if DEBUG:
 
 
 
+=======
+
+]
+
+>>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -135,7 +159,11 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
+<<<<<<< HEAD
 # USE_I18N = True
+=======
+USE_I18N = True
+>>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
 
 USE_TZ = True
 
@@ -165,12 +193,17 @@ CACHES = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+<<<<<<< HEAD
 USE_X_FORWARDED_HOST = False
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+=======
+
+>>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
 
 # Rate limiting settings
 RATELIMIT_ENABLE = True
 RATELIMIT_USE_CACHE = 'default'
+<<<<<<< HEAD
 RATELIMIT_FAIL_OPEN = False
 
 
@@ -195,3 +228,6 @@ SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SECURE_BROWSER_XSS_FILTER = False
 SECURE_CONTENT_TYPE_NOSNIFF = False
+=======
+RATELIMIT_FAIL_OPEN = False
+>>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
