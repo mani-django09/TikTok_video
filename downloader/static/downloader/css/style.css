@@ -15,6 +15,7 @@
 body {
     background-color: var(--light-gray);
     line-height: 1.5;
+
 }
 
 /* Top Navigation */
@@ -53,6 +54,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 100px; /* Adjust this value based on your header height */
+
 }
 
 .hero-content {
@@ -1107,3 +1110,4 @@ input:checked + .toggle-slider:before {
         width: 100%;
     }
 }
+
