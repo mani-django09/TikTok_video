@@ -66,7 +66,4 @@ urlpatterns = [
          content_type="text/plain")),
     path('test-sitemap/', test_sitemap_view, name='test_sitemap'),
 
-    #path('', views.home, name='home'),
-    #path('process/', views.process_video, name='process_video'),
-    #path('download/<str:filename>', views.download_file, name='download_file'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
