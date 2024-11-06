@@ -66,37 +66,6 @@ body {
 }
 
 /* Download Form */
-.download-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 5px;
-    border-radius: 8px;
-}
-
-.input-group {
-    display: flex;
-    gap: 5px;
-}
-
-.url-input {
-    flex: 1;
-    padding: 12px 15px;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.download-btn {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    background: var(--primary-purple);
-    color: white;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-}
-
 /* Ad Container */
 .ad-container {
     max-width: 600px;
