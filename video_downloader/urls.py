@@ -57,7 +57,7 @@ def test_sitemap_view(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('downloader.urls', namespace='downloader')),  # Add namespace
-      path('sitemap.xml', sitemap, {
+    path('sitemap.xml', sitemap, {
         'sitemaps': sitemaps,
         'template_name': 'sitemap.xml',
         'content_type': 'application/xml'
