@@ -1,2 +1,1 @@
-web: gunicorn video_downloader.wsgi:application
-
+web: gunicorn video_downloader.wsgi:application --bind 0.0.0.0:$PORT
