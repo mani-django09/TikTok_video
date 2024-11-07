@@ -15,7 +15,13 @@ urlpatterns = [
     path('api/video-info/', views.get_video_info, name='get_video_info'),
     path('api/process/', views.process_video, name='process_video'),
     path('download/<str:filename>', views.download_file, name='download_file'),
-    path('download-mp3/', views.download_mp3, name='download_mp3'),
-    path('how-to-save/', views.how_to_save, name='how_to_save'),
+    path('download-mp3/', views.mp3_download, name='download_mp3'),
+    path('download-mp4/', views.mp4_download, name='download_mp4'),
+    path('contact/', views.contact, name='contact'),  # Add this line
+    path('privacy/', views.privacy_policy, name='privacy_policy'),  # Add this line
+    path('terms/', views.terms_of_service, name='terms'),  # Add this line
+
+
+
    
 ] 

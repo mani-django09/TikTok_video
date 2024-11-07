@@ -1,3 +1,27 @@
-SECRET_KEY='django-insecure-reav7f)kd@xpthtf=2_*h&t4f$^95@z4ybrh+r32n)%*fh$p!5'
-DEBUG=False
-ALLOWED_HOSTS=ssstik.uno,www.ssstik.uno
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media/
+
+# Environment variables
+.env
+.env.*
+
+# Static files
+staticfiles/
+static/admin/
+static/rest_framework/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Operating System
+.DS_Store
+Thumbs.db

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import JsonResponse, FileResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
@@ -6,10 +6,18 @@ from django.conf import settings
 import logging
 import json
 import requests
+from .forms import ContactForm
 import os
 import re
 import time
 from bs4 import BeautifulSoup
+from django.contrib import messages
+import logging
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+
+logger = logging.getLogger(__name__)
+
 
 FAQ_DATA = [
     {
@@ -248,8 +256,58 @@ def download_file(request, filename):
 def home(request):
     return render(request, 'downloader/home.html')
 
-def download_mp3(request):
+def mp3_download(request):
     return render(request, 'downloader/download_mp3.html')
 
-def how_to_save(request):
-    return render(request, 'downloader/how_to_save.html')
+def mp4_download(request):
+    return render(request, 'downloader/mp4_download.html')
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            try:
+                # Get form data
+                name = form.cleaned_data['name']
+                email = form.cleaned_data['email']
+                subject = form.cleaned_data['subject']
+                message = form.cleaned_data['message']
+
+                # Create email content
+                email_content = f"""
+                New Contact Form Submission
+
+                Name: {name}
+                Email: {email}
+                Subject: {subject}
+                Message: {message}
+                """
+
+                # Send email using EmailMessage
+                email = EmailMessage(
+                    subject=f'Contact Form: {subject}',
+                    body=email_content,
+                    from_email=settings.EMAIL_HOST_USER,
+                    to=[settings.EMAIL_HOST_USER],
+                    reply_to=[email]
+                )
+                email.send(fail_silently=False)
+
+                messages.success(request, 'Your message has been sent successfully!')
+                return redirect('downloader:contact')
+
+            except Exception as e:
+                print(f"Email error: {str(e)}")  # For debugging
+                messages.error(request, 'Failed to send message. Please try again later.')
+    else:
+        form = ContactForm()
+
+    return render(request, 'downloader/contact.html', {'form': form})
+
+def privacy_policy(request):
+    # If accessed without trailing slash, redirect to version with slash
+    if not request.path.endswith('/'):
+        return redirect(request.path + '/')
+    return render(request, 'downloader/privacy_policy.html')
+
+def terms_of_service(request):
+    return render(request, 'downloader/terms.html')

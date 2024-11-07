@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const urlInput = document.querySelector('.url-input');
     const downloadBtn = document.querySelector('.download-btn');
-<<<<<<< HEAD
     const pasteBtn = document.querySelector('.paste-btn');
     const form = document.querySelector('.download-form');
     let isProcessing = false;
@@ -34,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .channel-thumbnail {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             object-fit: cover;
         }
@@ -52,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .video-title {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.8);
+            word-break: break-word;
+            line-height: 1.4;
         }
 
         .video-stats {
@@ -65,6 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex;
             align-items: center;
             gap: 5px;
+            padding: 4px 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            font-size: 13px;
         }
 
         .download-options {
@@ -126,6 +131,19 @@ document.addEventListener('DOMContentLoaded', function() {
             padding: 40px 0;
         }
 
+        .video-music {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-music i {
+            font-size: 14px;
+        }
+
         @media (max-width: 768px) {
             .video-preview {
                 margin: 20px 10px;
@@ -141,14 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
     styleSheet.innerText = styles;
     document.head.appendChild(styleSheet);
 
-=======
-    const form = document.querySelector('.download-form');
-    let isProcessing = false;
-
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
     // Initialize form handlers
-    initializeFormHandlers();
-
     function initializeFormHandlers() {
         // Handle form submission
         form.addEventListener('submit', async (e) => {
@@ -166,19 +177,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-<<<<<<< HEAD
         // Handle paste button
-=======
-        // Handle paste button if exists
-        const pasteBtn = document.querySelector('.paste-btn');
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
         if (pasteBtn) {
             pasteBtn.addEventListener('click', async () => {
                 try {
                     const text = await navigator.clipboard.readText();
                     urlInput.value = text;
                     urlInput.focus();
-<<<<<<< HEAD
                     
                     // Add visual feedback
                     pasteBtn.innerHTML = '<i class="fas fa-check"></i>';
@@ -190,8 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         pasteBtn.style.background = '';
                         pasteBtn.style.color = '';
                     }, 1000);
-=======
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
                 } catch (err) {
                     showError('Failed to paste from clipboard');
                 }
@@ -199,7 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-<<<<<<< HEAD
     function hideMainContent() {
         // Hide all sections that should be hidden
         const sectionsToHide = document.querySelectorAll('.features-section, .how-to-section, .faq-section');
@@ -222,8 +224,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-=======
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
     async function handleVideoInfo() {
         const url = urlInput.value.trim();
         
@@ -231,16 +231,11 @@ document.addEventListener('DOMContentLoaded', function() {
             showError('Please enter a TikTok URL');
             return;
         }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
         if (!isValidTikTokUrl(url)) {
             showError('Please enter a valid TikTok URL');
             return;
         }
-<<<<<<< HEAD
     
         isProcessing = true;
         showLoading();
@@ -253,6 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-CSRFToken': getCsrfToken()
                 },
                 body: JSON.stringify({ url })
             });
@@ -276,31 +272,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 urlInput.value = '';
             } else {
                 handleApiError(data);
-=======
-
-        isProcessing = true;
-        showLoading();
-
-        try {
-            // Add delay before API call to handle rate limiting
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            const infoResponse = await fetch('/api/video-info/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCsrfToken()
-                },
-                body: JSON.stringify({ url })
-            });
-
-            const infoData = await infoResponse.json();
-
-            if (infoData.status === 'success') {
-                showVideoPreview(infoData.data);
-            } else {
-                handleApiError(infoData);
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
             }
         } catch (error) {
             handleApiError(error);
@@ -316,7 +287,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (existingPreview) {
             existingPreview.remove();
         }
-<<<<<<< HEAD
     
         const previewHTML = `
             <div class="video-preview">
@@ -359,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `;
+
         // Find the hero section to insert the preview
         const heroSection = document.querySelector('.hero-section');
         if (heroSection) {
@@ -369,7 +340,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 heroSection.appendChild(previewContainer);
             }
             previewContainer.innerHTML = previewHTML;
-        
         }
 
         // Initialize download buttons
@@ -386,10 +356,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
     
                 try {
-                    const response = await fetch('/api/process/', {  // Changed from /api/download to /api/process/
+                    const response = await fetch('/api/process/', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
+                            'X-CSRFToken': getCsrfToken()
                         },
                         body: JSON.stringify({
                             url: videoUrl,
@@ -400,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                     const data = await response.json();
     
-                    if (data.status === 'success' && data.download_url) {  // Changed to match your API response structure
+                    if (data.status === 'success' && data.download_url) {
                         showSuccess('Starting download...');
                         setTimeout(() => {
                             window.location.href = data.download_url;
@@ -415,133 +386,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     btn.disabled = false;
                     btn.innerHTML = originalText;
                 }
-=======
-
-        const previewHTML = `
-            <div class="video-preview">
-                <div class="preview-content">
-                    <div class="thumbnail-container">
-                        <img src="${videoData.thumbnail}" alt="Video thumbnail" class="video-thumbnail">
-                        <div class="video-stats">
-                            <span><i class="fas fa-heart"></i> ${formatNumber(videoData.likes)}</span>
-                            <span><i class="fas fa-play"></i> ${formatNumber(videoData.plays)}</span>
-                            <span><i class="fas fa-share"></i> ${formatNumber(videoData.shares)}</span>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h3 class="video-title">${videoData.title || 'TikTok Video'}</h3>
-                        <p class="video-author">@${videoData.author}</p>
-                    </div>
-                </div>
-
-                <div class="download-options">
-                    <h4>Select Quality</h4>
-                    <div class="quality-buttons">
-                        <button class="quality-btn active" data-quality="hd">
-                            <i class="fas fa-video"></i>
-                            <div class="quality-info">
-                                <span>HD Quality</span>
-                                <small>High Definition MP4</small>
-                            </div>
-                        </button>
-                        <button class="quality-btn" data-quality="sd">
-                            <i class="fas fa-video"></i>
-                            <div class="quality-info">
-                                <span>SD Quality</span>
-                                <small>Standard Definition MP4</small>
-                            </div>
-                        </button>
-                        <button class="quality-btn" data-quality="audio">
-                            <i class="fas fa-music"></i>
-                            <div class="quality-info">
-                                <span>Audio Only</span>
-                                <small>MP3 Format</small>
-                            </div>
-                        </button>
-                    </div>
-
-                    <div class="watermark-option">
-                        <label class="toggle-container">
-                            <input type="checkbox" id="removeWatermark" checked>
-                            <span class="toggle-slider"></span>
-                            <span class="toggle-label">Remove Watermark</span>
-                        </label>
-                    </div>
-
-                    <button class="start-download-btn" onclick="startDownload('${videoData.url}')">
-                        <i class="fas fa-download"></i> Download Now
-                    </button>
-                </div>
-            </div>
-        `;
-
-        // Insert preview after the form
-        form.insertAdjacentHTML('afterend', previewHTML);
-
-        // Initialize quality buttons
-        initializeQualityButtons();
-    }
-
-    function initializeQualityButtons() {
-        const qualityButtons = document.querySelectorAll('.quality-btn');
-        qualityButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                qualityButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
             });
         });
     }
 
-<<<<<<< HEAD
-    function handleApiError(error) {
-        showError(error.message || 'An error occurred. Please try again.');
-=======
-    // Make startDownload function globally available
-    window.startDownload = async function(url) {
-        const selectedQuality = document.querySelector('.quality-btn.active').dataset.quality;
-        const removeWatermark = document.getElementById('removeWatermark').checked;
-        const downloadBtn = document.querySelector('.start-download-btn');
-
-        downloadBtn.disabled = true;
-        downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-
-        try {
-            const response = await fetch('/api/process/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCsrfToken()
-                },
-                body: JSON.stringify({
-                    url,
-                    quality: selectedQuality,
-                    remove_watermark: removeWatermark
-                })
-            });
-
-            const data = await response.json();
-
-            if (data.status === 'success' && data.download_url) {
-                showSuccess('Starting download...');
-                setTimeout(() => {
-                    window.location.href = data.download_url;
-                }, 1000);
-            } else {
-                handleApiError(data);
-            }
-        } catch (error) {
-            handleApiError(error);
-        } finally {
-            downloadBtn.disabled = false;
-            downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download Now';
-        }
-    };
-
     function handleApiError(error) {
         if (error.message?.includes('Api Limit')) {
             showError('Please wait a moment before trying again');
-            // Retry after delay
             setTimeout(() => {
                 if (!isProcessing) {
                     handleVideoInfo();
@@ -550,39 +401,26 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             showError(error.message || 'An error occurred. Please try again.');
         }
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
     }
 
     function showLoading() {
         downloadBtn.disabled = true;
         downloadBtn.innerHTML = `
-<<<<<<< HEAD
             <i class="fas fa-spinner fa-spin"></i>
-=======
-            <span class="loading-spinner"></span>
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
             <span>Processing...</span>
         `;
     }
 
     function hideLoading() {
         downloadBtn.disabled = false;
-<<<<<<< HEAD
         downloadBtn.innerHTML = `
             <i class="fas fa-download"></i>
             <span>Download</span>
         `;
-=======
-        downloadBtn.innerHTML = 'Download';
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
     }
 
     function showError(message) {
         removeMessages();
-<<<<<<< HEAD
-=======
-        
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
         const errorDiv = document.createElement('div');
         errorDiv.className = 'message error-message';
         errorDiv.innerHTML = `
@@ -591,24 +429,13 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         form.appendChild(errorDiv);
         
-<<<<<<< HEAD
-        setTimeout(() => {
-            errorDiv.remove();
-        }, 3000);
-=======
-        // Only auto-remove if it's not a rate limit error
         if (!message.includes('wait')) {
             setTimeout(() => errorDiv.remove(), 3000);
         }
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
     }
 
     function showSuccess(message) {
         removeMessages();
-<<<<<<< HEAD
-=======
-        
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
         const successDiv = document.createElement('div');
         successDiv.className = 'message success-message';
         successDiv.innerHTML = `
@@ -616,22 +443,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <span>${message}</span>
         `;
         form.appendChild(successDiv);
-<<<<<<< HEAD
-        
-        setTimeout(() => {
-            successDiv.remove();
-        }, 3000);
-    }
-
-    function removeMessages() {
-        const messages = document.querySelectorAll('.message');
-=======
         setTimeout(() => successDiv.remove(), 3000);
     }
 
     function removeMessages() {
-        const messages = form.querySelectorAll('.message');
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
+        const messages = document.querySelectorAll('.message');
         messages.forEach(msg => msg.remove());
     }
 
@@ -646,71 +462,129 @@ document.addEventListener('DOMContentLoaded', function() {
         return num.toString();
     }
 
-<<<<<<< HEAD
-
     function formatDuration(seconds) {
         if (!seconds) return '';
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
         return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
     }
-    
-    // Add these styles to your existing styles
-    const additionalStyles = `
-        .video-music {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 12px;
-            margin-top: 5px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-    
-        .video-music i {
-            font-size: 14px;
-        }
-    
-        .channel-thumbnail {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-    
-        .video-stats span {
-            padding: 4px 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            font-size: 13px;
-        }
-    
-        .video-title {
-            word-break: break-word;
-            line-height: 1.4;
-        }
-    `;
-    
 
     function isValidTikTokUrl(url) {
         return url.toLowerCase().includes('tiktok.com/') && 
                (url.includes('/video/') || url.includes('/@'));
     }
-})
+    function getCsrfToken() {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            const [name, value] = cookie.trim().split('=');
+            if (name === 'csrftoken') {
+                return value;
+            }
+        }
+        return '';
+    }
 
+    // Initialize event handlers
+    initializeFormHandlers();
+
+    // Initialize footer
+    initFooterAnimations();
+});
+
+// Footer animations and functionality
+function initFooterAnimations() {
+    const stats = document.querySelectorAll('.stat-number');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateNumber(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    stats.forEach(stat => observer.observe(stat));
+}
+
+function animateNumber(element) {
+    const final = parseInt(element.getAttribute('data-count'));
+    const duration = 2000;
+    const start = performance.now();
+    
+    function updateNumber(currentTime) {
+        const elapsed = currentTime - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const current = Math.floor(easeOutQuart * final);
+        element.textContent = formatNumber(current);
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+        }
+    }
+    
+    requestAnimationFrame(updateNumber);
+}
+
+// FAQ Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize FAQ accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Close other FAQs
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current FAQ
+            item.classList.toggle('active');
+        });
+    });
+
+    // Initialize scroll animations
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px'
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = entry.target.dataset.delay || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, delay);
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-fade, .reveal-slide').forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // Initialize paste button functionality
+    initializePasteButton();
+});
 
 function removeFooterAnimations() {
-    // Remove animation-related classes from footer
     const footer = document.querySelector('.site-footer');
     if (footer) {
         footer.classList.remove('animate-fade-in', 'wave-animation');
-        // Remove wave SVG if it exists
         const waves = footer.querySelector('.footer-waves');
         if (waves) {
             waves.remove();
         }
     }
 
-    // Remove number animations
     const stats = document.querySelectorAll('.stat-number');
     stats.forEach(stat => {
         const finalValue = stat.getAttribute('data-count');
@@ -718,7 +592,7 @@ function removeFooterAnimations() {
     });
 }
 
-// Updated styles for static footer
+// Add footer styles
 const footerStyles = `
     .site-footer {
         background: #1a1a1a;
@@ -874,175 +748,51 @@ const footerStyles = `
     }
 `;
 
-// Add the static footer styles
-const styleSheet = document.createElement("style");
-styleSheet.innerText = footerStyles;
-document.head.appendChild(styleSheet);
+// Add the footer styles
+const footerStyleSheet = document.createElement("style");
+footerStyleSheet.innerText = footerStyles;
+document.head.appendChild(footerStyleSheet);
 
-// Call this function when the page loads
+// Add this to your existing JavaScript file
 document.addEventListener('DOMContentLoaded', function() {
-    removeFooterAnimations();
-});
-=======
-    function isValidTikTokUrl(url) {
-        return url.toLowerCase().includes('tiktok.com/') && 
-               (url.startsWith('http://') || url.startsWith('https://'));
-    }
-
-    function getCsrfToken() {
-        const cookies = document.cookie.split(';');
-        for (let cookie of cookies) {
-            const [name, value] = cookie.trim().split('=');
-            if (name === 'csrftoken') {
-                return value;
+    const mp4DownloadBtn = document.querySelector('.mp4-download');
+    if (mp4DownloadBtn) {
+        mp4DownloadBtn.addEventListener('click', async () => {
+            const url = document.querySelector('.url-input').value.trim();
+            
+            if (!url) {
+                showError('Please enter a TikTok URL');
+                return;
             }
-        }
-        return '';
-    }
-});
 
-// Add to your main.js
-function initializePasteButton() {
-    const pasteBtn = document.querySelector('.paste-btn');
-    const urlInput = document.querySelector('.url-input');
-
-    pasteBtn.addEventListener('click', async () => {
-        try {
-            const text = await navigator.clipboard.readText();
-            urlInput.value = text;
-            urlInput.focus();
-            
-            // Add visual feedback
-            pasteBtn.innerHTML = '<i class="fas fa-check"></i>';
-            pasteBtn.style.background = '#10b981';
-            pasteBtn.style.color = 'white';
-            
-            setTimeout(() => {
-                pasteBtn.innerHTML = '<i class="fas fa-paste"></i>';
-                pasteBtn.style.background = '';
-                pasteBtn.style.color = '';
-            }, 1000);
-        } catch (err) {
-            showError('Failed to paste from clipboard');
-            
-            // Show error state
-            pasteBtn.innerHTML = '<i class="fas fa-times"></i>';
-            pasteBtn.style.background = '#ef4444';
-            pasteBtn.style.color = 'white';
-            
-            setTimeout(() => {
-                pasteBtn.innerHTML = '<i class="fas fa-paste"></i>';
-                pasteBtn.style.background = '';
-                pasteBtn.style.color = '';
-            }, 1000);
-        }
-    });
-}
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-    initializePasteButton();
-});
-
-// Add this to your main.js
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize footer animations
-    initFooterAnimations();
-});
-
-function initFooterAnimations() {
-    // Animate statistics when they come into view
-    const stats = document.querySelectorAll('.stat-number');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateNumber(entry.target);
-                observer.unobserve(entry.target);
+            if (!isValidTikTokUrl(url)) {
+                showError('Please enter a valid TikTok URL');
+                return;
             }
-        });
-    }, {
-        threshold: 0.5
-    });
 
-    stats.forEach(stat => observer.observe(stat));
-}
+            try {
+                showLoading();
+                const response = await fetch('/api/download-mp4/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCsrfToken()
+                    },
+                    body: JSON.stringify({ url: url })
+                });
 
-function animateNumber(element) {
-    const final = parseInt(element.getAttribute('data-count'));
-    const duration = 2000; // 2 seconds
-    const start = performance.now();
-    
-    function updateNumber(currentTime) {
-        const elapsed = currentTime - start;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smooth animation
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        
-        const current = Math.floor(easeOutQuart * final);
-        element.textContent = formatNumber(current);
-        
-        if (progress < 1) {
-            requestAnimationFrame(updateNumber);
-        }
-    }
-    
-    requestAnimationFrame(updateNumber);
-}
-
-function formatNumber(num) {
-    if (num >= 1000000) {
-        return (num / 1000000).toFixed(1) + 'M';
-    }
-    if (num >= 1000) {
-        return (num / 1000).toFixed(1) + 'K';
-    }
-    return num.toString();
-}
-
-
-// FAQ Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize FAQ accordion
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
-        question.addEventListener('click', () => {
-            // Close other FAQs
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
+                const data = await response.json();
+                if (data.status === 'success') {
+                    showSuccess('Starting MP4 download...');
+                    window.location.href = data.download_url;
+                } else {
+                    showError(data.message || 'Download failed');
                 }
-            });
-            
-            // Toggle current FAQ
-            item.classList.toggle('active');
-        });
-    });
-
-    // Initialize scroll animations
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px'
-    };
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const delay = entry.target.dataset.delay || 0;
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, delay);
-                revealObserver.unobserve(entry.target);
+            } catch (error) {
+                showError('An error occurred. Please try again.');
+            } finally {
+                hideLoading();
             }
         });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal-fade, .reveal-slide').forEach(el => {
-        revealObserver.observe(el);
-    });
+    }
 });
-
->>>>>>> 4851d4c23bbbfec86b05d0faf9f82bb7595cc44a
