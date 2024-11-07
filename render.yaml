@@ -3,9 +3,11 @@ services:
     name: video_downloader
     env: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn video_downloader.wsgi:application --bind 0.0.0.0:$PORT"
+    startCommand: "gunicorn video_downloader.wsgi:application --bind 0.0.0.0:$PORT --workers 4 --threads 8"
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.6
       - key: PORT
         value: 8000
+      - key: DJANGO_DEBUG
+        value: False

@@ -6,11 +6,14 @@ set -o errexit
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# Install gunicorn explicitly
-pip install gunicorn
+# Make migrations
+python manage.py makemigrations
+
+# Apply migrations
+python manage.py migrate
 
 # Collect static files
 python manage.py collectstatic --no-input
 
-# Run migrations
-python manage.py migrate
+# Create necessary directories
+mkdir -p /tmp/logs
