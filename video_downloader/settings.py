@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +26,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 DEBUG = True  # Force DEBUG for development
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['ssstik.uno', 'localhost', '127.0.0.1']
 # Security settings - adjusted based on DEBUG mode
 if DEBUG:
     # Development settings
@@ -75,6 +77,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line
+
 ]
 
 ROOT_URLCONF = 'video_downloader.urls'
@@ -100,12 +104,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'video_downloader.wsgi.application'
 
 # Database
+#DATABASES = {
+   # 'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+      #  'NAME': BASE_DIR / 'db.sqlite3',
+    #}
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600
+    )
 }
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
