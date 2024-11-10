@@ -4,97 +4,86 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section">
-    <div class="container">
-        <h1 class="main-title">TikTok Download Video</h1>
-        <p class="subtitle">TikTok Downloader, Download TikTok Video without watermark</p>
-        
-        <div class="download-container">
-            <form class="download-form" id="downloadForm">
-                <div class="download-wrapper">
-                    <div class="input-wrapper">
-                        <input type="text" class="url-input" id="tiktokUrl" placeholder="Paste TikTok link here" required>
-                        <button type="button" class="paste-btn" id="pasteBtn">
-                            <i class="fas fa-paste"></i>
-                            Paste
-                        </button>
-                    </div>
-                    <button type="submit" class="download-btn" id="downloadBtn">
-                        <i class="fas fa-download"></i>
-                        Download
-                    </button>
+    <h1 class="main-title">TikTok Download Video</h1>
+    <p class="subtitle">TikTok Downloader, Download TikTok Video without watermark</p>
+    
+    <!-- Download Form -->
+    <div class="download-form">
+        <div class="input-wrapper">
+            <input type="text" class="url-input" placeholder="Paste TikTok link here" required>
+            <button type="button" class="paste-btn">
+                <i class="fas fa-paste"></i>
+                Paste
+            </button>
+        </div>
+        <button type="submit" class="download-btn">
+            <i class="fas fa-download"></i>
+            Download
+        </button>
+    </div>
+
+    <!-- Video Preview -->
+    <div class="video-preview" style="display: none;">
+        <div class="video-header">
+            <div class="video-profile-img">
+                <img src="" id="video-thumbnail" alt="Video thumbnail">
+            </div>
+            <div class="video-info">
+                <h2 class="video-title" id="video-title">lvsjwonie</h2>
+                <p class="video-description" id="video-description">No description</p>
+                <div class="video-sound">
+                    <i class="fas fa-music"></i>
+                    <span>Original sound - <span id="video-author">lvsjwonie</span></span>
                 </div>
-            </form>
+            </div>
+        </div>
+
+        <div class="download-options">
+            <button class="preview-download-btn" id="download-normal">
+                Without watermark
+            </button>
+            <button class="preview-download-btn hd" id="download-hd">
+                Without watermark HD
+                <span class="quality-badge">4K</span>
+            </button>
+            <button class="preview-download-btn" id="download-mp3">
+                Download MP3
+            </button>
+        </div>
+
         </div>
     </div>
 </section>
-
-<section class="features-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Why Choose Our TikTok Downloader?</h2>
-            <p class="section-subtitle">The best features of our TikTok video downloader</p>
-            <div class="section-description">
-                <p>SssTiK is a TikTok downloader that helps users download TikTok videos to their personal devices in a format without watermark (logo) that supports all TikTok platforms such as App TikTok, TikTok Lite, TikTok Global, tiktok.com, ...</p>
-            </div>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3>Fast Download</h3>
-                <p>Download TikTok videos in seconds with our optimized servers</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Safe & Secure</h3>
-                <p>Your data is protected with advanced encryption</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-infinity"></i>
-                </div>
-                <h3>Unlimited Downloads</h3>
-                <p>No limits on the number of videos you can download</p>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- Include Features Section -->
+{% include 'downloader/features.html' %}
 
 <!-- How It Works Section -->
 <section class="how-to-section">
-    <div class="container">
-        <div class="instruction-card">
-            <h2>How to download TikTok without watermark?</h2>
-            
-            <div class="instruction-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Find a TikTok</h3>
-                        <p>Play the video you'd like to save to your mobile device, using the TikTok app</p>
-                    </div>
+    <div class="how-to-container">
+        <h2 class="how-to-title">How to download TikTok videos without watermark?</h2>
+        
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title">Get a TT</h3>
+                    <p class="step-description">Using the TT app, play the video you want to save on your phone.</p>
                 </div>
+            </div>
 
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Copy the link</h3>
-                        <p>Tap "Share" (the arrow button on top of your video), and then tap "Copy link"</p>
-                    </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="step-title">Copy the link</h3>
+                    <p class="step-description">Select "Share" (the arrow button above your video) and then "Copy link".</p>
                 </div>
+            </div>
 
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Save TikTok</h3>
-                        <p>Paste the link in the text field above and click the "Download" button</p>
-                    </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="step-title">Save TikTok</h3>
+                    <p class="step-description">Proceed to sss tiktok video download without watermark website and paste in the link on page's text field then press "Save"</p>
                 </div>
             </div>
         </div>
@@ -146,16 +135,15 @@
             <div class="faq-item">
                 <div class="faq-question">
                     <span>4</span>
-                    <h3>What formats are supported?</h3>
+                    <h3>What quality is supported?</h3>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>We support MP4 video downloads in both HD and SD quality, as well as MP3 audio extraction.</p>
+                    <p>We support video downloads in both HD and SD quality for the best viewing experience.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-</div>
 {% endblock %}

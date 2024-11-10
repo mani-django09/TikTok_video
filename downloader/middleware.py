@@ -1,6 +1,7 @@
 from django.http import HttpResponseTooManyRequests
 from django.core.cache import cache
 import time
+from .models import UserActivity
 
 class RateLimitMiddleware:
     def __init__(self, get_response):
@@ -25,3 +26,5 @@ class RateLimitMiddleware:
             cache.set(cache_key, requests, 3600)
         
         return self.get_response(request)
+    
+

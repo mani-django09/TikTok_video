@@ -1,19 +1,24 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<!-- Add these meta tags to your head section -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TikTok Video Downloader - Download Without Watermark HD</title>
+    <link rel="sitemap" type="application/xml" href="{% url 'sitemap' %}" />
 
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'downloader/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'downloader/css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'downloader/css/how-to-download.css' %}">    <link rel="stylesheet" href="{% static 'downloader/css/features.css' %}">
+    <link rel="stylesheet" href="{% static 'downloader/css/faq.css' %}">  <!-- Fixed missing > -->
+    <link rel="stylesheet" href="{% static 'downloader/css/contact.css' %}">  <!-- Fixed missing > -->
+    <link rel="stylesheet" href="{% static 'downloader/css/terms.css' %}">
+    <link rel="stylesheet" href="{% static 'downloader/css/privacy_policy.css' %}">
+    <link rel="stylesheet" href="{% static 'downloader/css/video_preview.css' %}">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'downloader/css/style.css' %}">
+
 </head>
 <body>
     <!-- Top Navigation -->
@@ -23,8 +28,6 @@
                 <h1>sss<span>tik</span></h1>
             </a>
             <div class="nav-links">
-                <a href="{% url 'downloader:download_mp4' %}" class="nav-link">Download MP4</a>
-                <a href="{% url 'downloader:download_mp3' %}" class="nav-link">Download MP3</a>
                 <a href="#" class="nav-link language-select">Languages</a>
             </div>
         </div>
@@ -59,25 +62,22 @@
                 <div class="footer-section">
                     <h4>Support</h4>
                     <p>Have questions? We're here to help!</p>
-                    <a href="mailto:support@example.com">support@example.com</a>
-                    <div class="social-links">
-                        <a href="{{ SOCIAL_MEDIA.TWITTER }}" target="_blank" rel="noopener noreferrer" class="social-link twitter">
-                            <i class="fab fa-twitter"></i>
-                            <span class="tooltip">Follow on Twitter</span>
-                        </a>
-                        
-                        <a href="{{ SOCIAL_MEDIA.FACEBOOK }}" target="_blank" rel="noopener noreferrer" class="social-link facebook">
-                            <i class="fab fa-facebook-f"></i>
-                            <span class="tooltip">Like on Facebook</span>
-                        </a>
-                        
-                        <a href="{{ SOCIAL_MEDIA.INSTAGRAM }}" target="_blank" rel="noopener noreferrer" class="social-link instagram">
-                            <i class="fab fa-instagram"></i>
-                            <span class="tooltip">Follow on Instagram</span>
-                        </a>
-                    </div>
+                    <a href="mailto:manikant007y@gmail.com">manikant007y@gmail.com</a>
+                    <!-- Just update this part in your footer -->
+<div class="social-links">
+    <a href="{{ SOCIAL_MEDIA.TWITTER }}" target="_blank" rel="noopener noreferrer" class="social-link twitter">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a href="{{ SOCIAL_MEDIA.FACEBOOK }}" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="{{ SOCIAL_MEDIA.INSTAGRAM }}" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+</div>
                 </div>
             </div>
+
     
             <!-- Footer Bottom -->
             <div class="footer-bottom">
@@ -92,7 +92,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- JavaScript -->
     <script src="{% static 'downloader/js/main.js' %}"></script>
+    <script src="{% static 'downloader/js/faq.js' %}"></script>  <!-- Added FAQ JavaScript -->
+    <script src="{% static 'downloader/js/video_preview.js' %}"></script>
+
     {% block extra_js %}{% endblock %}
 </body>
 </html>

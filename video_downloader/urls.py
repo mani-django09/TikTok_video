@@ -19,14 +19,14 @@ from django.urls import path,include
 from downloader import views
 from django.conf import settings
 from django.conf.urls.static import static
-from downloader.sitemaps import StaticViewSitemap
 from django.views.generic.base import TemplateView
 from django.contrib.sitemaps.views import sitemap
 from django.http import HttpResponse
 import xml.dom.minidom
+from django.contrib.sitemaps.views import sitemap
 
 sitemaps = {
-    'static': StaticViewSitemap,
+    'videos': None,
 }
 
 
@@ -57,11 +57,8 @@ def test_sitemap_view(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('downloader.urls', namespace='downloader')),  # Add namespace
-    path('sitemap.xml', sitemap, {
-        'sitemaps': sitemaps,
-        'template_name': 'sitemap.xml',
-        'content_type': 'application/xml'
-    }, name='django.contrib.sitemaps.views.sitemap'),
+    path('sitemap.xml', views.sitemap, name='sitemap'),
+
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", 
          content_type="text/plain")),
     path('test-sitemap/', test_sitemap_view, name='test_sitemap'),

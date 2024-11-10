@@ -15,6 +15,11 @@ from django.contrib import messages
 import logging
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
+from django.http import HttpResponse
+from django.template import loader
+from django.utils import timezone
+from datetime import datetime
+
 
 logger = logging.getLogger(__name__)
 
@@ -311,3 +316,44 @@ def privacy_policy(request):
 
 def terms_of_service(request):
     return render(request, 'downloader/terms.html')
+
+
+def sitemap(request):
+    current_date = datetime.now().strftime('%Y-%m-%d')
+    
+    xml_sitemap = '''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>{0}://{1}/</loc>
+        <lastmod>{2}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>{0}://{1}/privacy-policy/</loc>
+        <lastmod>{2}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{0}://{1}/terms/</loc>
+        <lastmod>{2}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{0}://{1}/contact/</loc>
+        <lastmod>{2}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+</urlset>
+'''.format(
+    request.scheme,
+    request.get_host(),
+    current_date
+)
+
+    response = HttpResponse(xml_sitemap, content_type='application/xml; charset=UTF-8')
+    response['Content-Length'] = len(xml_sitemap)
+    return response

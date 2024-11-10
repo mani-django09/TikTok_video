@@ -81,7 +81,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line
-
+    #'downloader.middleware.ActivityTrackingMiddleware',
 ]
 
 ROOT_URLCONF = 'video_downloader.urls'

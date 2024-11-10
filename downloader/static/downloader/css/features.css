@@ -1,0 +1,170 @@
+/* features.css */
+
+.features-section {
+    padding: 60px 20px;
+    background: var(--white);
+}
+
+.section-header {
+    max-width: 800px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 32px;
+    color: var(--gray-800);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: var(--gray-600);
+    margin-bottom: 30px;
+}
+
+.section-description {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    color: var(--gray-600);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.feature-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: relative;
+}
+
+.fast-download .feature-icon-wrapper {
+    background: rgba(255, 149, 0, 0.1);
+}
+
+.fast-download .feature-icon {
+    color: #FF9500;
+}
+
+.safe-secure .feature-icon-wrapper {
+    background: rgba(52, 199, 89, 0.1);
+}
+
+.safe-secure .feature-icon {
+    color: #34C759;
+}
+
+.unlimited-downloads .feature-icon-wrapper {
+    background: rgba(88, 86, 214, 0.1);
+}
+
+.unlimited-downloads .feature-icon {
+    color: #5856D6;
+}
+
+.feature-icon {
+    font-size: 28px;
+    position: relative;
+    z-index: 2;
+}
+
+.feature-card h3 {
+    color: var(--gray-800);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: var(--gray-600);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Hover Effects */
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .features-section {
+        padding: 40px 15px;
+    }
+
+    .section-header {
+        margin-bottom: 30px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .section-description {
+        font-size: 15px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .feature-card {
+        padding: 24px;
+    }
+
+    .feature-icon-wrapper {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    .feature-icon {
+        font-size: 24px;
+    }
+
+    .feature-card h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .feature-card p {
+        font-size: 15px;
+    }
+}

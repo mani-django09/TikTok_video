@@ -1,20 +1,16 @@
-# downloader/sitemaps.py
+# myapp/sitemaps.py
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from django.conf import settings
+from .models import Post  # import your model
 
-class StaticViewSitemap(Sitemap):
-    priority = 0.9
+class VideoSitemap(Sitemap):
     changefreq = "daily"
-    protocol = 'http'  # Use 'https' in production
+    priority = 0.7
 
     def items(self):
-        # Only include public pages, not API endpoints
-        return [
-            'downloader:home',
-            # Add other public pages here
-        ]
+        # Import Video only when needed to avoid circular import
+        from .models import Video  # Lazy import
+        return Video.objects.all()
 
-    def location(self, item):
-        url = reverse(item)
-        return url  # Django will automatically add the domain
+    def lastmod(self, obj):
+        return obj.uploaded_at
