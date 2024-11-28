@@ -4,8 +4,8 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section">
-    <h1 class="main-title">TikTok Download Video</h1>
-    <p class="subtitle">TikTok Downloader, Download TikTok Video without watermark</p>
+    <h1 class="main-title">TikTok video Downloader</h1>
+    <p class="subtitle">TikTok video Downloader, Download TikTok Video without watermark</p>
     
     <!-- Download Form -->
     <div class="download-form">
@@ -23,34 +23,45 @@
     </div>
 
     <!-- Video Preview -->
-    <div class="video-preview" style="display: none;">
-        <div class="video-header">
-            <div class="video-profile-img">
-                <img src="" id="video-thumbnail" alt="Video thumbnail">
-            </div>
-            <div class="video-info">
-                <h2 class="video-title" id="video-title">lvsjwonie</h2>
-                <p class="video-description" id="video-description">No description</p>
-                <div class="video-sound">
-                    <i class="fas fa-music"></i>
-                    <span>Original sound - <span id="video-author">lvsjwonie</span></span>
+    <div class="video-preview" id="video-preview" style="display: none;">
+        <div class="preview-content">
+            <div class="video-info-wrapper">
+                <div class="user-section">
+                    <img src="" class="user-avatar" alt="User profile picture">
+                    <div class="user-info">
+                        <h3 class="username"></h3>
+                        <p class="description"></p>
+                        <div class="sound-info">
+                            <i class="fas fa-music" aria-hidden="true"></i>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <i class="fas fa-heart" aria-hidden="true"></i>
+                        <span class="likes-count"></span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-comment" aria-hidden="true"></i>
+                        <span class="comments-count"></span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-share" aria-hidden="true"></i>
+                        <span class="shares-count"></span>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="download-options">
-            <button class="preview-download-btn" id="download-normal">
-                Without watermark
-            </button>
-            <button class="preview-download-btn hd" id="download-hd">
-                Without watermark HD
-                <span class="quality-badge">4K</span>
-            </button>
-            <button class="preview-download-btn" id="download-mp3">
-                Download MP3
-            </button>
-        </div>
-
+    
+            <div class="download-section">
+                <button class="download-option" data-quality="sd">Without watermark</button>
+                <button class="download-option with-badge" data-quality="hd">
+                    Without watermark HD
+                    <span class="quality-badge">HD</span>
+                </button>
+                <button class="download-option" data-quality="audio">Download MP3</button>
+            </div>
         </div>
     </div>
 </section>

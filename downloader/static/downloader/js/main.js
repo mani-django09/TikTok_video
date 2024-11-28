@@ -203,27 +203,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function hideMainContent() {
-        // Hide all sections that should be hidden
         const sectionsToHide = document.querySelectorAll('.features-section, .how-to-section, .faq-section');
-        sectionsToHide.forEach(section => {
-            section.style.display = 'none';
-        });
-
-        // Hide the form but keep the container for the preview
+        sectionsToHide.forEach(section => section.style.display = 'none');
+    
         const heroContent = document.querySelector('.hero-content');
         if (heroContent) {
             const downloadForm = heroContent.querySelector('.download-form');
-            if (downloadForm) {
-                downloadForm.style.display = 'none';
-            }
-            // Hide any other elements in hero section except what's needed for preview
             const elementsToHide = heroContent.querySelectorAll('.main-title, .subtitle');
-            elementsToHide.forEach(el => {
-                el.style.display = 'none';
-            });
+            
+            if (downloadForm) downloadForm.style.display = 'none';
+            elementsToHide.forEach(el => el.style.display = 'none');
         }
     }
-
     async function handleVideoInfo() {
         const url = urlInput.value.trim();
         
@@ -281,115 +272,113 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function showVideoPreview(videoData) {
-        // Remove any existing preview
-        const existingPreview = document.querySelector('.video-preview');
-        if (existingPreview) {
-            existingPreview.remove();
-        }
-    
+    function showVideoPreview(data) {
         const previewHTML = `
             <div class="video-preview">
                 <div class="preview-content">
-                    <div class="video-info-wrapper">
-                        <div class="channel-info">
-                            <img src="${videoData.thumbnail}" alt="Video thumbnail" class="channel-thumbnail">
-                            <div class="channel-details">
-                                <h3 class="channel-name">${videoData.author}</h3>
-                                <p class="video-title">${videoData.description || 'No description'}</p>
-                                ${videoData.music ? `
-                                    <p class="video-music">
-                                        <i class="fas fa-music"></i> ${videoData.music.title || 'Original sound'} - ${videoData.music.author || videoData.author}
-                                    </p>
-                                ` : ''}
+                    <!-- User Info Section -->
+                    <div class="user-section">
+                        <img src="${data.thumbnail}" class="user-avatar" alt="Profile">
+                        <div class="user-info">
+                            <h3 class="username">${data.author}</h3>
+                            <p class="description">${data.description || 'No description'}</p>
+                            <div class="sound-info">
+                                <i class="fas fa-music"></i>
+                                <span>Original sound - ${data.author}</span>
                             </div>
-                        </div>
-                        <div class="video-stats">
-                            <span title="Likes"><i class="fas fa-heart"></i> ${formatNumber(videoData.likes)}</span>
-                            <span title="Comments"><i class="fas fa-comment"></i> ${formatNumber(videoData.comments)}</span>
-                            <span title="Shares"><i class="fas fa-share"></i> ${formatNumber(videoData.shares)}</span>
-                            ${videoData.duration ? `
-                                <span title="Duration"><i class="fas fa-clock"></i> ${formatDuration(videoData.duration)}</span>
-                            ` : ''}
                         </div>
                     </div>
     
+                    <!-- Download Buttons -->
                     <div class="download-options">
-                        <button class="download-btn-option" data-quality="sd">
+                        <button class="download-btn-option">
                             Without watermark
                         </button>
-                        <button class="download-btn-option" data-quality="hd">
+                        <button class="download-btn-option">
                             Without watermark HD
                             <span class="quality-badge">4K</span>
                         </button>
-                        <button class="download-btn-option" data-quality="audio">
+                        <button class="download-btn-option">
                             Download MP3
                         </button>
                     </div>
                 </div>
+    
+                <!-- Stats Bar -->
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <i class="fas fa-heart"></i>
+                        <span>${formatNumber(data.likes)}</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-comment"></i>
+                        <span>${formatNumber(data.comments)}</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-share"></i>
+                        <span>${formatNumber(data.shares)}</span>
+                    </div>
+                </div>
             </div>
         `;
-
+    
+    
         // Find the hero section to insert the preview
         const heroSection = document.querySelector('.hero-section');
-        if (heroSection) {
-            let previewContainer = heroSection.querySelector('.preview-container');
-            if (!previewContainer) {
-                previewContainer = document.createElement('div');
-                previewContainer.className = 'preview-container';
-                heroSection.appendChild(previewContainer);
-            }
-            previewContainer.innerHTML = previewHTML;
+    if (heroSection) {
+        let previewContainer = heroSection.querySelector('.preview-container');
+        if (!previewContainer) {
+            previewContainer = document.createElement('div');
+            previewContainer.className = 'preview-container';
+            heroSection.appendChild(previewContainer);
         }
-
-        // Initialize download buttons
-        initializeDownloadButtons(videoData.url);
+        previewContainer.innerHTML = previewHTML;
     }
-
-    function initializeDownloadButtons(videoUrl) {
-        const downloadButtons = document.querySelectorAll('.download-btn-option');
-        downloadButtons.forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const quality = btn.dataset.quality;
-                btn.disabled = true;
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+}
     
-                try {
-                    const response = await fetch('/api/process/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': getCsrfToken()
-                        },
-                        body: JSON.stringify({
-                            url: videoUrl,
-                            quality: quality,
-                            remove_watermark: true
-                        })
-                    });
+    window.handleDownload = async function(quality, url) {
+        const button = event.target.closest('.download-option');
+        const originalText = button.innerHTML;
+        
+        try {
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
     
-                    const data = await response.json();
-    
-                    if (data.status === 'success' && data.download_url) {
-                        showSuccess('Starting download...');
-                        setTimeout(() => {
-                            window.location.href = data.download_url;
-                        }, 1000);
-                    } else {
-                        throw new Error('Download failed');
-                    }
-                } catch (error) {
-                    showError('Download failed. Please try again.');
-                    console.error('Download error:', error);
-                } finally {
-                    btn.disabled = false;
-                    btn.innerHTML = originalText;
-                }
+            const response = await fetch('/api/process/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCsrfToken()
+                },
+                body: JSON.stringify({
+                    url: url,
+                    quality: quality,
+                    remove_watermark: true
+                })
             });
-        });
+    
+            const data = await response.json();
+    
+            if (data.status === 'success' && data.download_url) {
+                showSuccess('Starting download...');
+                // Create a temporary anchor element to trigger the download
+                const downloadLink = document.createElement('a');
+                downloadLink.href = data.download_url;
+                downloadLink.download = `tiktok_video_${quality}.${quality === 'audio' ? 'mp3' : 'mp4'}`;
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            } else {
+                throw new Error('Download failed');
+            }
+        } catch (error) {
+            showError('Download failed. Please try again.');
+            console.error('Download error:', error);
+        } finally {
+            button.disabled = false;
+            button.innerHTML = originalText;
+        }
     }
-
     function handleApiError(error) {
         if (error.message?.includes('Api Limit')) {
             showError('Please wait a moment before trying again');
@@ -420,29 +409,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showError(message) {
-        removeMessages();
         const errorDiv = document.createElement('div');
         errorDiv.className = 'message error-message';
         errorDiv.innerHTML = `
             <i class="fas fa-exclamation-circle"></i>
             <span>${message}</span>
         `;
-        form.appendChild(errorDiv);
-        
-        if (!message.includes('wait')) {
-            setTimeout(() => errorDiv.remove(), 3000);
-        }
+        document.querySelector('.download-form').appendChild(errorDiv);
+        setTimeout(() => errorDiv.remove(), 3000);
     }
 
     function showSuccess(message) {
-        removeMessages();
         const successDiv = document.createElement('div');
         successDiv.className = 'message success-message';
         successDiv.innerHTML = `
             <i class="fas fa-check-circle"></i>
             <span>${message}</span>
         `;
-        form.appendChild(successDiv);
+        document.querySelector('.download-form').appendChild(successDiv);
         setTimeout(() => successDiv.remove(), 3000);
     }
 
@@ -572,7 +556,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Initialize paste button functionality
-    initializePasteButton();
 });
 
 function removeFooterAnimations() {
@@ -755,44 +738,34 @@ document.head.appendChild(footerStyleSheet);
 
 // Add this to your existing JavaScript file
 document.addEventListener('DOMContentLoaded', function() {
-    const mp4DownloadBtn = document.querySelector('.mp4-download');
-    if (mp4DownloadBtn) {
-        mp4DownloadBtn.addEventListener('click', async () => {
-            const url = document.querySelector('.url-input').value.trim();
-            
-            if (!url) {
-                showError('Please enter a TikTok URL');
-                return;
-            }
-
-            if (!isValidTikTokUrl(url)) {
-                showError('Please enter a valid TikTok URL');
-                return;
-            }
-
-            try {
-                showLoading();
-                const response = await fetch('/api/download-mp4/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': getCsrfToken()
-                    },
-                    body: JSON.stringify({ url: url })
-                });
-
-                const data = await response.json();
-                if (data.status === 'success') {
-                    showSuccess('Starting MP4 download...');
-                    window.location.href = data.download_url;
-                } else {
-                    showError(data.message || 'Download failed');
-                }
-            } catch (error) {
-                showError('An error occurred. Please try again.');
-            } finally {
-                hideLoading();
-            }
-        });
-    }
-});
+    const downloadButtons = document.querySelectorAll('.download-option');
+    
+    downloadButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const quality = this.textContent.includes('HD') ? 'hd' : 'sd';
+        const isAudio = this.textContent.includes('MP3');
+        const originalText = this.innerHTML;
+        
+        // Here you would typically call your backend API to handle the download
+        // For demonstration, we'll just simulate the process
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        this.disabled = true;
+        
+        setTimeout(() => {
+          if (isAudio) {
+            console.log('Downloading audio...');
+          } else {
+            console.log(`Downloading video in ${quality} quality...`);
+          }
+          
+          this.innerHTML = '<i class="fas fa-check"></i> Download Complete!';
+          
+          setTimeout(() => {
+            this.innerHTML = originalText;
+            this.disabled = false;
+          }, 2000);
+        }, 2000);
+      });
+    });
+  });
+  
