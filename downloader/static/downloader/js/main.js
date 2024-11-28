@@ -291,14 +291,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
                     <!-- Download Buttons -->
                     <div class="download-options">
-                        <button class="download-btn-option">
+                        <button class="download-btn-option" onclick="handleDownload('sd', '${data.url}')">
                             Without watermark
                         </button>
-                        <button class="download-btn-option">
+                        <button class="download-btn-option" onclick="handleDownload('hd', '${data.url}')">
                             Without watermark HD
                             <span class="quality-badge">4K</span>
                         </button>
-                        <button class="download-btn-option">
+                        <button class="download-btn-option" onclick="handleDownload('audio', '${data.url}')">
                             Download MP3
                         </button>
                     </div>
@@ -325,60 +325,107 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Find the hero section to insert the preview
         const heroSection = document.querySelector('.hero-section');
-    if (heroSection) {
-        let previewContainer = heroSection.querySelector('.preview-container');
-        if (!previewContainer) {
-            previewContainer = document.createElement('div');
-            previewContainer.className = 'preview-container';
-            heroSection.appendChild(previewContainer);
+        if (heroSection) {
+            let previewContainer = heroSection.querySelector('.preview-container');
+            if (!previewContainer) {
+                previewContainer = document.createElement('div');
+                previewContainer.className = 'preview-container';
+                heroSection.appendChild(previewContainer);
+            }
+            previewContainer.innerHTML = previewHTML;
+    
+            // Initialize the download buttons
         }
-        previewContainer.innerHTML = previewHTML;
     }
-}
+    // Add this function at the global scope (outside any event listeners)
+window.handleDownload = function(quality, url) {
+    const button = event.target.closest('.download-btn-option');
+    const originalText = button.innerHTML;
     
-    window.handleDownload = async function(quality, url) {
-        const button = event.target.closest('.download-option');
-        const originalText = button.innerHTML;
-        
-        try {
-            button.disabled = true;
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-    
-            const response = await fetch('/api/process/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCsrfToken()
-                },
-                body: JSON.stringify({
-                    url: url,
-                    quality: quality,
-                    remove_watermark: true
-                })
-            });
-    
-            const data = await response.json();
-    
+    try {
+        button.disabled = true;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+        fetch('/api/process/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCsrfToken()
+            },
+            body: JSON.stringify({
+                url: url,
+                quality: quality,
+                remove_watermark: true
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
             if (data.status === 'success' && data.download_url) {
                 showSuccess('Starting download...');
-                // Create a temporary anchor element to trigger the download
-                const downloadLink = document.createElement('a');
-                downloadLink.href = data.download_url;
-                downloadLink.download = `tiktok_video_${quality}.${quality === 'audio' ? 'mp3' : 'mp4'}`;
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
+                window.location.href = data.download_url;
             } else {
                 throw new Error('Download failed');
             }
-        } catch (error) {
+        })
+        .catch(error => {
             showError('Download failed. Please try again.');
             console.error('Download error:', error);
-        } finally {
+        })
+        .finally(() => {
             button.disabled = false;
             button.innerHTML = originalText;
-        }
+        });
+    } catch (error) {
+        showError('Download failed. Please try again.');
+        console.error('Download error:', error);
+        button.disabled = false;
+        button.innerHTML = originalText;
     }
+};
+function handleDownload(quality, url) {
+    const button = event.target.closest('.download-btn-option');
+    const originalText = button.innerHTML;
+    
+    try {
+        button.disabled = true;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+        fetch('/api/process/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCsrfToken()
+            },
+            body: JSON.stringify({
+                url: url,
+                quality: quality,
+                remove_watermark: true
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success' && data.download_url) {
+                showSuccess('Starting download...');
+                window.location.href = data.download_url;
+            } else {
+                throw new Error('Download failed');
+            }
+        })
+        .catch(error => {
+            showError('Download failed. Please try again.');
+            console.error('Download error:', error);
+        })
+        .finally(() => {
+            button.disabled = false;
+            button.innerHTML = originalText;
+        });
+    } catch (error) {
+        showError('Download failed. Please try again.');
+        console.error('Download error:', error);
+        button.disabled = false;
+        button.innerHTML = originalText;
+    }
+}
     function handleApiError(error) {
         if (error.message?.includes('Api Limit')) {
             showError('Please wait a moment before trying again');
@@ -768,4 +815,21 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
-  
+  // Track download button clicks
+document.querySelectorAll('.download-btn-option').forEach(button => {
+    button.addEventListener('click', function() {
+        gtag('event', 'download_click', {
+            'event_category': 'Download',
+            'event_label': this.textContent.includes('HD') ? 'HD Video' : 
+                          this.textContent.includes('MP3') ? 'MP3' : 'SD Video'
+        });
+    });
+});
+
+// Track paste button clicks
+document.querySelector('.paste-btn')?.addEventListener('click', function() {
+    gtag('event', 'paste_click', {
+        'event_category': 'Input',
+        'event_label': 'Paste URL'
+    });
+});

@@ -751,3 +751,14 @@ input:checked + .toggle-slider:before {
         gap: 24px;
     }
 }
+
+
+.section-description a {
+    color: #1867ED;  /* or your preferred color */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.section-description a:hover {
+    text-decoration: underline;
+}
