@@ -805,21 +805,22 @@ input:checked + .toggle-slider:before {
 
 .faq-question {
     display: flex;
-  align-items: center;
-  padding: 20px;
-  cursor: pointer;
-  gap: 16px;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+    gap: 16px;
 }
 
 .faq-question:hover {
     background-color: #f8f9fa;
 }
 .faq-icon i {
+    font-size: 16px;
     color: #666;
-    font-size: 14px;
-    transition: transform 0.3s ease;
   }
-  
+  .faq-icon i::before {
+    content: "\f078"; /* Force chevron-down icon */
+}
   .faq-item.active .faq-icon i {
     transform: rotate(180deg);
   }
@@ -846,10 +847,9 @@ input:checked + .toggle-slider:before {
 }
 
 .faq-icon {
+    margin-left: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
 }
 
 .faq-icon::before,
