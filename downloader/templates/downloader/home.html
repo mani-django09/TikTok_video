@@ -10,17 +10,16 @@
     <!-- Download Form -->
     <div class="download-form">
         <div class="input-wrapper">
-            <input type="text" class="url-input" placeholder="Paste TikTok link here" required>
-            <button type="button" class="paste-btn">
+            <input type="text" class="url-input" placeholder="Paste TikTok link here">
+            <button class="paste-btn">
                 <i class="fas fa-paste"></i>
                 Paste
             </button>
         </div>
-        <button type="submit" class="download-btn">
-            <i class="fas fa-download"></i>
+        <button class="download-btn">
+            <i class="fas fa-arrow-down"></i> 
             Download
         </button>
-    </div>
 
     <!-- Video Preview -->
     <div class="video-preview" id="video-preview" style="display: none;">
@@ -68,93 +67,119 @@
 <!-- Include Features Section -->
 {% include 'downloader/features.html' %}
 
+
 <!-- How It Works Section -->
-<section class="how-to-section">
-    <div class="how-to-container">
-        <h2 class="how-to-title">How to download TikTok videos without watermark?</h2>
-        
-        <div class="steps-container">
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3 class="step-title">Get a TT</h3>
-                    <p class="step-description">Using the TT app, play the video you want to save on your phone.</p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3 class="step-title">Copy the link</h3>
-                    <p class="step-description">Select "Share" (the arrow button above your video) and then "Copy link".</p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3 class="step-title">Save TikTok</h3>
-                    <p class="step-description">Proceed to sss tiktok video download without watermark website and paste in the link on page's text field then press "Save"</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{% include 'downloader/how-to-download.html' %}
 
 <!-- FAQ Section -->
 <section class="faq-section">
-    <div class="container">
+    <div class="faq-container">
         <div class="faq-header">
             <h2>Frequently Asked Questions</h2>
-            <p>Everything you need to know about our TikTok downloader</p>
+            <p>Everything you need to know about our TikTok video downloader</p>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="faq-number">1</span>
+                <h3>How does our TikTok video downloader work?</h3>
+                <div class="faq-icon">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            <div class="faq-answer">
+                <p>Our website SSStik.uno for downloading TikTok videos use advanced algorithms that fetch video directly from TikTok's servers. Following is the step-by-step details of how we do it:</p>
+                <ol>
+                    <li>Just paste the TikTok video's URL into SSSTIK.UNO's input box.</li>
+                    <li>Our system analyzes the URL and sends a request to TikTok's servers.</li>
+                    <li>Our servers process the video, removing any watermarks if requested.</li>
+                    <li>The processed video is made available for you to download in your chosen format and quality.</li>
+                </ol>
+            </div>
         </div>
 
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>1</span>
-                    <h3>How to download TikTok videos?</h3>
+        <div class="faq-item" id="faq-quality-options">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-number">2</span>
+                <h3>What video quality options are available?</h3>
+                <div class="faq-icon">
                     <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Simply paste the TikTok video URL in the input field above, select your preferred quality, and click download.</p>
                 </div>
             </div>
+            <div class="faq-answer">
+                <p>We offer multiple quality options to suit various needs and internet speeds:</p>
+                <ul>
+                    <li><strong>HD Quality (1080p):</strong> Ideal for professional usage or watching on big screens. Offers the best visual quality but creates larger file sizes.</li>
+                    <li><strong>Standard Quality (720p):</strong> The perfect trade-off between quality and file size. It's best suited for general purposes and most devices.</li>
+                    <li><strong>Audio Only (MP3):</strong> Takes only the audio track, ideal for music or sound bites from TikTok videos.</li>
+                </ul>
+            </div>
+        </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>2</span>
-                    <h3>Is it safe to use?</h3>
+        <div class="faq-item" id="faq-watermark-removal">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-number">3</span>
+                <h3>Can I download TikTok videos without watermark?</h3>
+                <div class="faq-icon">
                     <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes, our service is completely free to use with no limitations or restrictions.</p>
                 </div>
             </div>
+            <div class="faq-answer">
+                <p>Yes, our website provides the ability to delete TikTok watermark from downloaded videos. Here is what you should know about this feature:</p>
+                <ul>
+                    <li>Watermark removal is accessible for all quality levels (HD, Standard, and Mobile).</li>
+                    <li>The process is automated and does not impact the original video quality.</li>
+                    <li>Some videos contain embedded watermarks that cannot be removed without compromising video quality.</li>
+                </ul>
+            </div>
+        </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>3</span>
-                    <h3>Can I download videos without watermark?</h3>
+        <div class="faq-item" id="faq-download-limits">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-number">4</span>
+                <h3>Are there any limitations on downloads?</h3>
+                <div class="faq-icon">
                     <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes, you can download TikTok videos without watermark in HD quality by using our service.</p>
                 </div>
             </div>
+            <div class="faq-answer">
+                <p>We have no download limits or restrictions in place. You can:</p>
+                <ul>
+                    <li><strong>Number of Downloads:</strong> Unlimited downloads for all users.</li>
+                    <li><strong>File Size:</strong> Download any file size there is no any restrictions .</li>
+                    <li><strong>Video Length:</strong> Download any video length.</li>
+                    <li><strong>Daily Limit:</strong> Download as many videos as you want per day.</li>
+                </ul>
+            </div>
+        </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>4</span>
-                    <h3>What quality is supported?</h3>
+        <div class="faq-item" id="faq-support">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-number">5</span>
+                <h3>How can I contact support for issues or questions?</h3>
+                <div class="faq-icon">
                     <i class="fas fa-chevron-down"></i>
                 </div>
-                <div class="faq-answer">
-                    <p>We support video downloads in both HD and SD quality for the best viewing experience.</p>
-                </div>
+            </div>
+            <div class="faq-answer">
+                <p>We're here to help! You can reach our support team through multiple channels:</p>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:manikant007y@gmail.com">manikant007y@gmail.com</a></li>
+                    <li><strong>FAQ Section:</strong>  Look for whether your question has been answered in this detailed FAQ.</li>
+                    <li><strong>Social Media:</strong> Reach out to us on <a href="https://twitter.com/TikTokDL" target="_blank">Twitter</a> or <a href="https://facebook.com/TikTokDownloader" target="_blank">Facebook</a> for updates and support.</li>
+                </ul>
+                <p>We normally get back to all inquiries within 24 hours. In case of urgency, please avail the live chat function for instant response. Your satisfaction is our ultimate goal!</p>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+function toggleFaq(element) {
+    element.closest('.faq-item').classList.toggle('active');
+    const icon = element.querySelector('.fa-chevron-down');
+    icon.style.transform = element.closest('.faq-item').classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+}
+</script>
 
 {% endblock %}

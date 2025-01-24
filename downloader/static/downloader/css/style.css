@@ -74,48 +74,40 @@ body {
 }
 /* Hero Section */
 .hero-section {
-    background-color: var(--primary-blue);
-    padding: 10px 20px 20px;
+    background-color: rgb(24, 103, 237);
+    padding: 40px 20px;
     text-align: center;
-    min-height: auto;
 }
 .section {
     padding: 1rem;
 }
 .main-title {
-    color: var(--white);
-    font-size: 48px;
+    color: white;
+    font-size: 45px;
     font-weight: 600;
-    margin-bottom: 10px;  /* Reduced margin */
+    margin-bottom: 15px;
 }
 .subtitle {
-    color: var(--white);
+    color: white;
     font-size: 20px;
-    margin-bottom: 15px;  /* Reduced margin */
     opacity: 0.95;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 30px;
 }
 
 /* Download Form */
 .download-form {
     max-width: 800px;
-    margin: 0 auto 20px;  /* Added bottom margin */
+    margin: 0 auto;
     display: flex;
-    gap: 16px;
-    width: 100%;
+    gap: 12px;
 }
 
 .input-wrapper {
     flex: 1;
     display: flex;
-    background: var(--white);
-    border-radius: 12px;  /* Increased border radius */
+    background: white;
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Added subtle shadow */
-    transition: all 0.3s ease;
-    border: 2px solid transparent;  /* Added for hover effect */
 }
 .input-wrapper:hover {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
@@ -123,12 +115,10 @@ body {
 }
 .url-input {
     flex: 1;
-    padding: 0 24px;
+    padding: 0 15px;
+    height: 50px;
     border: none;
     font-size: 16px;
-    color: #333;
-    height: 60px;  /* Increased height */
-    background: transparent;
 }
 
 .url-input:focus {
@@ -136,18 +126,16 @@ body {
 }
 
 .paste-btn {
-    padding: 0 28px;
+    padding: 0 10px;
     border: none;
-    background: var(--white);
-    color: var(--primary-blue);
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
+    background: white;
+    color: rgb(24, 103, 237);
+    font-weight: 700;
+    border-left: 1px solid #eee;
     display: flex;
     align-items: center;
     gap: 8px;
-    border-left: 1px solid #eee;
-    transition: all 0.3s ease;
+    cursor: pointer;
 }
 .paste-btn:hover {
     background: #f8f9fa;
@@ -155,24 +143,22 @@ body {
 }
 
 .paste-btn i {
-    font-size: 18px;
+    font-size: 21px;
 }
 .download-btn {
-    height: 60px;  /* Increased height */
-    padding: 0 36px;
-    border: none;
-    border-radius: 12px;  /* Increased border radius */
-    background: var(--primary-green);
-    color: var(--white);
-    font-size: 16px;
-    font-weight: 500;
+    background: rgb(0, 192, 75);
+    color: white;
+    border: none; 
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-size: 15px;
+    font-weight: 800;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 192, 75, 0.3);  /* Added glow effect */
+    gap: 6px;
+    height: 50px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 .download-btn:hover {
     background: #00b344;  /* Slightly darker on hover */
@@ -181,8 +167,16 @@ body {
 }
 
 .download-btn i {
-    font-size: 18px;
+    font-size: 21px;
+    font-weight: 1000;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 20px;
+    text-align: center;
+    
 }
+
 .paste-btn.success {
     background: #10b981;
     color: white;
@@ -761,4 +755,175 @@ input:checked + .toggle-slider:before {
 
 .section-description a:hover {
     text-decoration: underline;
+}
+
+
+.faq-section {
+    padding: 40px 20px;
+    background: #fff;
+}
+
+.faq-container {
+    max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-header {
+    text-align: center;
+  margin-bottom: 40px;
+}
+
+.faq-header h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.faq-header p {
+    font-size: 16px;
+  color: #666;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    background: #fff;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.faq-question {
+    display: flex;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  gap: 16px;
+}
+
+.faq-question:hover {
+    background-color: #f8f9fa;
+}
+.faq-icon i {
+    color: #666;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+  }
+  
+  .faq-item.active .faq-icon i {
+    transform: rotate(180deg);
+  }
+.faq-number {
+    background-color: #1867ed;
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.faq-question h3 {
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+}
+
+.faq-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+    display: none;
+
+}
+.faq-question i {
+    color: #666;
+    transition: transform 0.3s ease;
+  }
+  .faq-item.active i {
+    transform: rotate(180deg);
+  }
+.faq-icon::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 30px; 
+    height: 3px;
+    background: #FF5C00;
+    transform: rotate(-45deg) translate(3px, 0);
+    transform-origin: right;
+    border-radius: 2px;
+}
+.faq-item.active .faq-icon::before {
+    transform: rotate(45deg) translate(3px, 0);
+ }
+.faq-icon::after {
+    top: 0;
+    left: 9px;
+    width: 2px;
+    height: 100%;
+}
+
+.faq-answer {
+    max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  padding: 0 20px;
+}
+
+.faq-answer p,
+.faq-answer ul,
+.faq-answer ol {
+    margin: 16px 0;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.faq-answer ul li,
+.faq-answer ol li {
+  margin-bottom: 8px;
+}
+.faq-item.active .faq-icon::after {
+    transform: rotate(90deg);
+    opacity: 0;}
+
+.faq-item.active .faq-answer {
+    max-height: 1000px;
+    padding: 0 20px 20px;
+}
+.faq-item i {
+    transition: transform 0.3s ease;
+}
+@media (max-width: 768px) {
+    .faq-header h2 {
+        font-size: 28px;
+    }
+    .faq-question {
+        padding: 16px;
+      }
+    
+    .faq-question h3 {
+        font-size: 15px;
+    }
 }

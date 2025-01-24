@@ -1,36 +1,474 @@
-<section class="features-section">
-    <div class="section-header">
-        <h2 class="section-title">Why Choose Our TikTok Downloader?</h2>
-        <p class="section-subtitle">The best features of our TikTok video downloader</p>
-        <div class="section-description">
-            <p>TikTok video downloader is a free online service that lets you <a href="https://ssstik.uno/" target="_blank" rel="noopener">download TikTok videos</a> in high-definition MP4 or MP3 format, and it works on all your devices like desktop, smartphone, iphone, or tablet. 
-                With just one click, you can download any TikTok video from your phone, desktop, or tablet. And the best part? No loss in video quality and it's super fast. No need to install any apps, just use our service straight from your browser....</p>
-        </div>
-    </div>
-
-    <div class="features-grid">
-        <div class="feature-card fast-download">
-            <div class="feature-icon-wrapper">
-                <i class="fas fa-bolt feature-icon"></i>
+<style>
+    .features-section {
+        padding: 80px 20px;
+        background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    }
+    
+    .section-header {
+        max-width: 900px;
+        margin: 0 auto 60px;
+        text-align: center;
+    }
+    
+    .section-title {
+        font-size: 36px;
+        background: linear-gradient(135deg, #1867ED 0%, #4361EE 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+    
+    .section-subtitle {
+        font-size: 20px;
+        color: #4B5563;
+        margin-bottom: 30px;
+        font-weight: 500;
+    }
+    
+    .section-description {
+        background: linear-gradient(135deg, rgba(24, 103, 237, 0.05) 0%, rgba(67, 97, 238, 0.05) 100%);
+        border-radius: 16px;
+        padding: 30px;
+        color: #4B5563;
+        font-size: 16px;
+        line-height: 1.7;
+        margin: 0 auto;
+    }
+    
+    .features-grid {
+        max-width: 1200px;
+        margin: 0 auto 60px;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon-wrapper {
+        width: 70px;
+        height: 70px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        position: relative;
+    }
+    
+    .feature-badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: #4361EE;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    
+    .premium-quality .feature-icon-wrapper {
+        background: linear-gradient(135deg, rgba(255, 191, 0, 0.1) 0%, rgba(255, 170, 0, 0.1) 100%);
+    }
+    
+    .premium-quality .feature-icon {
+        color: #FFA000;
+    }
+    
+    .smart-processing .feature-icon-wrapper {
+        background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);
+    }
+    
+    .smart-processing .feature-icon {
+        color: #4361EE;
+    }
+    
+    .security .feature-icon-wrapper {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+    }
+    
+    .security .feature-icon {
+        color: #10B981;
+    }
+    
+    .cloud-power .feature-icon-wrapper {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%);
+    }
+    
+    .cloud-power .feature-icon {
+        color: #3B82F6;
+    }
+    
+    .formats .feature-icon-wrapper {
+        background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(219, 39, 119, 0.1) 100%);
+    }
+    
+    .formats .feature-icon {
+        color: #EC4899;
+    }
+    
+    .analytics .feature-icon-wrapper {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+    }
+    
+    .analytics .feature-icon {
+        color: #8B5CF6;
+    }
+    
+    .feature-icon {
+        font-size: 28px;
+    }
+    
+    .feature-card h3 {
+        font-size: 20px;
+        color: #1F2937;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    
+    .feature-card p {
+        color: #6B7280;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    .feature-specs {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .feature-specs li {
+        color: #6B7280;
+        font-size: 14px;
+        padding: 8px 0;
+        padding-left: 24px;
+        position: relative;
+    }
+    
+    .feature-specs li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #4361EE;
+        font-weight: bold;
+    }
+    
+    .performance-stats {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        margin-top: 60px;
+    }
+    
+    .stat-card {
+        text-align: center;
+    }
+    
+    .stat-value {
+        font-size: 36px;
+        font-weight: 700;
+        color: #1F2937;
+        margin-bottom: 8px;
+    }
+    
+    .stat-label {
+        color: #6B7280;
+        font-size: 16px;
+    }
+    
+    @media (max-width: 1024px) {
+        .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .features-section {
+            padding: 60px 15px;
+        }
+    
+        .section-title {
+            font-size: 28px;
+        }
+    
+        .section-subtitle {
+            font-size: 18px;
+        }
+    
+        .features-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+    
+        .performance-stats {
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+    
+        .stat-card {
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+    .core-features-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    .feature-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .feature-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .fast-download .feature-icon-wrapper {
+        background: rgba(255, 149, 0, 0.1);
+    }
+    
+    .fast-download .feature-icon {
+        color: #FF9500;
+    }
+    
+    .safe-secure .feature-icon-wrapper {
+        background: rgba(52, 199, 89, 0.1);
+    }
+    
+    .safe-secure .feature-icon {
+        color: #34C759;
+    }
+    
+    .unlimited .feature-icon-wrapper {
+        background: rgba(88, 86, 214, 0.1);
+    }
+    
+    .unlimited .feature-icon {
+        color: #5856D6;
+    }
+    
+    .feature-icon {
+        font-size: 32px;
+    }
+    
+    .feature-card h3 {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: #1F2937;
+    }
+    
+    .feature-description {
+        color: #6B7280;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+    
+    .feature-benefits {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+        margin-top: 20px;
+    }
+    
+    .feature-benefits li {
+        color: #4B5563;
+        padding: 8px 0 8px 24px;
+        position: relative;
+    }
+    
+    .feature-benefits li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #34C759;
+        font-weight: bold;
+    }
+    
+    @media (max-width: 768px) {
+        .core-features-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+    }
+    @media (max-width: 1024px) {
+        .features-section {
+            padding: 60px 30px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .features-section {
+            padding: 40px 20px;
+        }
+    
+        .section-header,
+        .features-grid,
+        .core-features-grid,
+        .performance-stats {
+            padding: 0 15px;
+        }
+        .core-features-grid,
+        .features-grid {
+            margin-bottom: 16px;  /* Reduced bottom margin */
+        }
+    }
+    </style>
+    
+    <section class="features-section">
+        <div class="section-header">
+            <h2 class="section-title">Download TikTok Videos Without Watermark with SSStik</h2>
+            <p class="section-subtitle">Free TikTok Video Downloader - Save Videos in HD Quality</p>
+            <div class="section-description">
+                <p>SSSTIK is the top TikTok video downloader that enables you to save TikTok videos without any watermarks in HD. SSSTIK.UNO is an best solution for content creators, TikTok fans, and digital marketers because our instant downloads are high-quality while preserving the original video quality. Our free online tool allows users to download TikTok videos in both MP4 and MP3 formats on any device.</p>
+                
+                <p>SSSTIK.UNO has no registration processes and comes with no annoying advertisements which allows for a completely smooth experience. Our unique technology guarantees unparalleled video quality and minimum download speeds of over 4k. Our TikTok downloader fully supports all devices and works perfectly on all major browsers.</p>
+                
+                <p>You can now easily save the best TikTok content using various formats. SSSTIK allows you to download TikTok videos without any watermarks, extract MP3 audio and save them, or even save the videos in HD quality. Because SSSTIK works with ordinary TikTok videos and popular TikTok music clips, it is the perfect tool for making compilations or saving creative content.</p>
+                
+                <p>Content creators can rely on SSSTIK.UNO due to its consistent high-quality output. Our TikTok video downloader is capable of processing thousands of downloads on a daily basis continuously without any loss in video quality performance. </p>
             </div>
-            <h3>Fast Download</h3>
-            <p>Download TikTok videos in seconds with our optimized servers</p>
-        </div>
-
-        <div class="feature-card safe-secure">
-            <div class="feature-icon-wrapper">
-                <i class="fas fa-shield-alt feature-icon"></i>
+        </div>  
+    
+        <!-- Core Features -->
+        <div class="core-features-grid">
+            <!-- Fast Download -->
+            <div class="feature-card fast-download">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-bolt feature-icon"></i>
+                </div>
+                <h3>Fast Download</h3>
+                <p class="feature-description">Download any TikTok video in seconds with SSSTIK's optimized servers.</p>
+                <ul class="feature-benefits">
+                    <li>Instant video processing</li>
+                    <li>Multi-server architecture</li>
+                    <li>Global CDN support</li>
+                    <li>No waiting queues</li>
+                </ul>
             </div>
-            <h3>Safe & Secure</h3>
-            <p>Your data is protected with advanced encryption</p>
-        </div>
-
-        <div class="feature-card unlimited-downloads">
-            <div class="feature-icon-wrapper">
-                <i class="fas fa-infinity feature-icon"></i>
+        
+            <!-- Safe & Secure -->
+            <div class="feature-card safe-secure">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                </div>
+                <h3>Safe & Secure</h3>
+                <p class="feature-description">Industry-leading security protecting your data and privacy.</p>
+                <ul class="feature-benefits">
+                    <li>HTTPS encryption</li>
+                    <li>No data storage</li>
+                    <li>Secure downloads</li>
+                    <li>Ad-free experience</li>
+                </ul>
             </div>
-            <h3>Unlimited Downloads</h3>
-            <p>No limits on the number of videos you can download</p>
+        
+            <!-- Unlimited Downloads -->
+            <div class="feature-card unlimited">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-infinity feature-icon"></i>
+                </div>
+                <h3>Unlimited Downloads</h3>
+                <p class="feature-description">Download as many TikTok videos as you want, completely free.</p>
+                <ul class="feature-benefits">
+                    <li>No daily limits</li>
+                    <li>Batch downloads</li>
+                    <li>HD quality support</li>
+                    <li>Multiple formats</li>
+                </ul>
+            </div>
         </div>
-    </div>
-</section>
+        <!-- Advanced Features -->
+        <div class="features-grid advanced-features">
+            <div class="feature-card premium-quality">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-crown feature-icon"></i>
+                    <div class="feature-badge">Premium</div>
+                </div>
+                <h3>4K Ultra HD Quality</h3>
+                <p>Download videos in pristine 4K quality with enhanced bitrate optimization and HDR support.</p>
+                <ul class="feature-specs">
+                    <li>Up to 3840 x 2160 resolution</li>
+                    <li>High Dynamic Range (HDR)</li>
+                    <li>60 FPS support</li>
+                </ul>
+            </div>
+    
+            <div class="feature-card formats">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-file-video feature-icon"></i>
+                    <div class="feature-badge">Flexible</div>
+                </div>
+                <h3>Multiple Formats</h3>
+                <p>Download in various formats optimized for different uses. Choose from MP4, WebM, or MP3 with custom quality settings.</p>
+                <ul class="feature-specs">
+                    <li>Custom quality presets</li>
+                    <li>Batch conversion</li>
+                    <li>Format optimization</li>
+                </ul>
+            </div>
+    
+            <div class="feature-card analytics">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <div class="feature-badge">Analytics</div>
+                </div>
+                <h3>Download Analytics</h3>
+                <p>Track your download history and usage statistics. Get insights into video quality and processing times.</p>
+                <ul class="feature-specs">
+                    <li>Download history</li>
+                    <li>Quality metrics</li>
+                    <li>Performance tracking</li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Performance Stats -->
+        <div class="performance-stats">
+            <div class="stat-card">
+                <div class="stat-value">
+                    <span class="stat-number" data-count="99.9">99.9</span>%
+                </div>
+                <div class="stat-label">Service Uptime</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">
+                    <span class="stat-number" data-count="500">500</span>K+
+                </div>
+                <div class="stat-label">Daily Downloads</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">
+                    <span class="stat-number" data-count="50">50</span>+
+                </div>
+                <div class="stat-label">Global Servers</div>
+            </div>
+        </div>
+    </section>

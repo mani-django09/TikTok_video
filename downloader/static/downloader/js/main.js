@@ -560,51 +560,63 @@ function animateNumber(element) {
 }
 
 // FAQ Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize FAQ accordion
-    const faqItems = document.querySelectorAll('.faq-item');
+function toggleFaq(element) {
+    const faqItem = element.closest('.faq-item');
+    const answer = faqItem.querySelector('.faq-answer');
     
-    faqItems.forEach(item => {
+    // Close all other FAQs
+    document.querySelectorAll('.faq-item').forEach(item => {
+        if (item !== faqItem) {
+            item.classList.remove('active');
+            const otherAnswer = item.querySelector('.faq-answer');
+            otherAnswer.style.maxHeight = '0';
+            otherAnswer.style.padding = '0 20px';
+        }
+    });
+
+    // Toggle current FAQ
+    faqItem.classList.toggle('active');
+    if (faqItem.classList.contains('active')) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        answer.style.padding = '20px';
+    } else {
+        answer.style.maxHeight = '0';
+        answer.style.padding = '0 20px';
+    }
+}
+
+// Add click event listeners to all FAQ questions
+document.addEventListener('DOMContentLoaded', function() {
+    // Remove all onclick attributes from HTML elements
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.removeAttribute('onclick');
+    });
+
+    // Add click event listeners
+    document.querySelectorAll('.faq-item').forEach(item => {
         const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
         
-        question.addEventListener('click', () => {
-            // Close other FAQs
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
+        question.addEventListener('click', function() {
+            // Close other items
+            document.querySelectorAll('.faq-item.active').forEach(activeItem => {
+                if (activeItem !== item) {
+                    activeItem.classList.remove('active');
+                    const otherAnswer = activeItem.querySelector('.faq-answer');
+                    otherAnswer.style.maxHeight = null;
                 }
             });
-            
-            // Toggle current FAQ
+
+            // Toggle current item
             item.classList.toggle('active');
-        });
-    });
-
-    // Initialize scroll animations
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px'
-    };
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const delay = entry.target.dataset.delay || 0;
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, delay);
-                revealObserver.unobserve(entry.target);
+            if (item.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            } else {
+                answer.style.maxHeight = null;
             }
         });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal-fade, .reveal-slide').forEach(el => {
-        revealObserver.observe(el);
     });
-
-    // Initialize paste button functionality
 });
-
 function removeFooterAnimations() {
     const footer = document.querySelector('.site-footer');
     if (footer) {
@@ -815,6 +827,8 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
+
+  
   // Track download button clicks
 document.querySelectorAll('.download-btn-option').forEach(button => {
     button.addEventListener('click', function() {
