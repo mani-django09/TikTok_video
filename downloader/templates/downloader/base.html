@@ -2,106 +2,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Download TikTok videos without watermark in HD quality. Free online TikTok video downloader - Save TikTok videos in MP4 and MP3 format easily.">
-    <link rel="sitemap" type="application/xml" href="{% url 'sitemap' %}" />
-    <meta name="keywords" content="TikTok downloader, TikTok video download, download TikTok without watermark, TikTok MP3, TikTok HD download">
-    <meta property="og:title" content="TikTok Video Downloader - Download Without Watermark HD">
-    <meta property="og:description" content="Download TikTok videos without watermark in HD quality. Free online TikTok video downloader - Save videos in MP4 and MP3 format.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ssstik.uno">
-    
-    <title>TikTok Video Downloader - Download Without Watermark HD</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'downloader/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'downloader/css/footer.css' %}">
-    <link rel="stylesheet" href="{% static 'downloader/css/how-to-download.css' %}">   
-    <link rel="stylesheet" href="{% static 'downloader/css/features.css' %}">    
-    <link rel="stylesheet" href="{% static 'downloader/css/contact.css' %}">  <!-- Fixed missing > -->
-    <link rel="stylesheet" href="{% static 'downloader/css/terms.css' %}">
-    <link rel="stylesheet" href="{% static 'downloader/css/privacy_policy.css' %}">
-    <link rel="stylesheet" href="{% static 'downloader/css/video_preview.css' %}">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W57313S10K"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-W57313S10K');
-    </script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="Download TikTok videos without watermark in HD quality. Free online TikTok video downloader - Save TikTok videos in MP4 and MP3 format easily.">
+   <link rel="sitemap" type="application/xml" href="{% url 'sitemap' %}" />
+   <meta name="keywords" content="TikTok downloader, TikTok video download, download TikTok without watermark, TikTok MP3, TikTok HD download">
+   <meta property="og:title" content="TikTok Video Downloader - Download Without Watermark HD">
+   <meta property="og:description" content="Download TikTok videos without watermark in HD quality. Free online TikTok video downloader - Save videos in MP4 and MP3 format.">
+   <meta property="og:type" content="website">
+   <meta property="og:url" content="https://ssstik.uno">
+   
+   <title>{% block title %}TikTok Video Downloader - Download Without Watermark HD{% endblock title %}</title>
+   
+   {% block css %}
+   <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link rel="stylesheet" href="{% static 'downloader/css/style.css' %}">
+   <link rel="stylesheet" href="{% static 'downloader/css/footer.css' %}">
+   <link rel="stylesheet" href="{% static 'downloader/css/how-to-download.css' %}">
+   <link rel="stylesheet" href="{% static 'downloader/css/features.css' %}">
+   <link rel="stylesheet" href="{% static 'downloader/css/contact.css' %}">
+   <link rel="stylesheet" href="{% static 'downloader/css/terms.css' %}">
+   <link rel="stylesheet" href="{% static 'downloader/css/privacy_policy.css' %}">
+   <link rel="stylesheet" href="{% static 'downloader/css/video_preview.css' %}">
+   {% endblock css %}
+
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W57313S10K"></script>
+   <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config', 'G-W57313S10K');
+   </script>
 </head>
 <body>
-    <!-- Top Navigation -->
-    <header class="top-nav">
-        <div class="nav-container">
-            <a href="{% url 'downloader:home' %}" class="nav-brand">
-                <h1>sss<span>tik</span></h1>
-            </a>
-        </div>
-    </header>
-    <!-- Main Content -->
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+   <header class="top-nav">
+       <div class="nav-container">
+           <a href="{% url 'downloader:home' %}" class="nav-brand">
+               <h1>sss<span>tik</span></h1>
+           </a>
+       </div>
+   </header>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <!-- Column 1: Logo & Description -->
-                <div class="footer-section">
-                    <h3 class="footer-title">TikTok Downloader</h3>
-                    <p class="footer-description">
-                        Free online tool to download TikTok videos without watermark in HD quality. Check out more about <a href="https://newsroom.tiktok.com/en-us/" target="_blank" rel="noopener noreferrer">TikTok News</a>.
-                    </p>
-                </div>
-    
-                <!-- Column 2: Quick Links -->
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="{% url 'downloader:privacy_policy' %}">Privacy Policy</a></li>
-                        <li><a href="{% url 'downloader:contact' %}">Contact</a></li>
-                        <li><a href="{% url 'downloader:terms' %}">Terms of Service</a></li>    
-                    </ul>
-                </div>
-    
-                <!-- Column 3: Support -->
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <p>Have questions? We're here to help!</p>
-                    <a href="mailto:manikant007y@gmail.com">manikant007y@gmail.com</a>
-                    <!-- Just update this part in your footer -->
-<div class="social-links">
-    <a href="{{ SOCIAL_MEDIA.TWITTER }}" target="_blank" rel="noopener noreferrer" class="social-link twitter">
-        <i class="fab fa-twitter"></i>
-    </a>
-    <a href="{{ SOCIAL_MEDIA.FACEBOOK }}" target="_blank" rel="noopener noreferrer" class="social-link facebook">
-        <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="{{ SOCIAL_MEDIA.INSTAGRAM }}" target="_blank" rel="noopener noreferrer" class="social-link instagram">
-        <i class="fab fa-instagram"></i>
-    </a>
-</div>
-                </div>
-            </div>
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <p class="copyright">© 2024 SSStik - TikTok Downloader. All rights reserved.</p>
-                <div class="bottom-links">
-                    <a href="{% url 'downloader:terms' %}">Terms</a>
-                    <span class="separator">•</span>
-                    <a href="{% url 'downloader:privacy_policy' %}">Privacy</a>
-                    <span class="separator">•</span>
-                    <a href="{% url 'downloader:contact' %}">Contact</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+   <main>
+       {% block content %}{% endblock content %}
+   </main>
 
-    <!-- JavaScript -->
-    <script src="{% static 'downloader/js/main.js' %}"></script>
-    {% block extra_js %}{% endblock %}
+   <footer class="site-footer">
+       <div class="footer-container">
+           <div class="footer-content">
+               <div class="footer-section">
+                   <h3 class="footer-title">TikTok Downloader</h3>
+                   <p class="footer-description">
+                       Free online tool to download TikTok videos without watermark in HD quality. Check out more about <a href="https://newsroom.tiktok.com/en-us/" target="_blank" rel="noopener noreferrer">TikTok News</a>.
+                   </p>
+               </div>
+
+               <div class="footer-section">
+                   <h4>Quick Links</h4>
+                   <ul>
+                       <li><a href="{% url 'downloader:privacy_policy' %}">Privacy Policy</a></li>
+                       <li><a href="{% url 'downloader:contact' %}">Contact</a></li>
+                       <li><a href="{% url 'downloader:terms' %}">Terms of Service</a></li>
+                   </ul>
+               </div>
+
+               <div class="footer-section">
+                   <h4>Support</h4>
+                   <p>Have questions? We're here to help!</p>
+                   <a href="mailto:manikant007y@gmail.com">manikant007y@gmail.com</a>
+                   <div class="social-links">
+                       <a href="{{ SOCIAL_MEDIA.TWITTER }}" target="_blank" rel="noopener noreferrer" class="social-link twitter">
+                           <i class="fab fa-twitter"></i>
+                       </a>
+                       <a href="{{ SOCIAL_MEDIA.FACEBOOK }}" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                           <i class="fab fa-facebook-f"></i>
+                       </a>
+                       <a href="{{ SOCIAL_MEDIA.INSTAGRAM }}" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                           <i class="fab fa-instagram"></i>
+                       </a>
+                   </div>
+               </div>
+           </div>
+
+           <div class="footer-bottom">
+               <p class="copyright">© 2024 SSStik - TikTok Downloader. All rights reserved.</p>
+               <div class="bottom-links">
+                   <a href="{% url 'downloader:terms' %}">Terms</a>
+                   <span class="separator">•</span>
+                   <a href="{% url 'downloader:privacy_policy' %}">Privacy</a>
+                   <span class="separator">•</span>
+                   <a href="{% url 'downloader:contact' %}">Contact</a>
+               </div>
+           </div>
+       </div>
+   </footer>
+
+   {% block js %}
+   <script src="{% static 'downloader/js/main.js' %}"></script>
+   {% endblock js %}
+   
+   {% block extra_js %}{% endblock extra_js %}
 </body>
 </html>
