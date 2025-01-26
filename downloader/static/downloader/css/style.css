@@ -791,12 +791,12 @@ input:checked + .toggle-slider:before {
 }
 
 .faq-item {
-    background: #fff;
-  border-radius: 8px;
-  border: 1px solid #eee;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .faq-item:hover {
@@ -804,10 +804,7 @@ input:checked + .toggle-slider:before {
 }
 
 .faq-question {
-    display: flex;
-    align-items: center;
     padding: 20px;
-    cursor: pointer;
     gap: 16px;
 }
 
@@ -839,23 +836,14 @@ input:checked + .toggle-slider:before {
 }
 
 .faq-question h3 {
-    flex-grow: 1;
     font-size: 16px;
     font-weight: 500;
     color: #333;
-    margin: 0;
 }
 
 .faq-icon {
-    margin-left: auto;
     display: flex;
     align-items: center;
-}
-
-.faq-icon::before,
-.faq-icon::after {
-    display: none;
-
 }
 
 .faq-icon::before,
@@ -865,6 +853,7 @@ input:checked + .toggle-slider:before {
 }
 .faq-question i {
     color: #666;
+    font-size: 16px;
     transition: transform 0.3s ease;
   }
   .faq-item.active i {
