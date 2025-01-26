@@ -791,12 +791,12 @@ input:checked + .toggle-slider:before {
 }
 
 .faq-item {
-    background: #ffffff;
-    border-radius: 8px;
-    border: 1px solid #eee;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: all 0.3s ease;
+    background: #fff;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
 .faq-item:hover {
@@ -804,7 +804,10 @@ input:checked + .toggle-slider:before {
 }
 
 .faq-question {
+    display: flex;
+    align-items: center;
     padding: 20px;
+    cursor: pointer;
     gap: 16px;
 }
 
@@ -812,12 +815,11 @@ input:checked + .toggle-slider:before {
     background-color: #f8f9fa;
 }
 .faq-icon i {
-    font-size: 16px;
     color: #666;
+    font-size: 14px;
+    transition: transform 0.3s ease;
   }
-  .faq-icon i::before {
-    content: "\f078"; /* Force chevron-down icon */
-}
+  
   .faq-item.active .faq-icon i {
     transform: rotate(180deg);
   }
@@ -836,24 +838,27 @@ input:checked + .toggle-slider:before {
 }
 
 .faq-question h3 {
+    flex-grow: 1;
     font-size: 16px;
     font-weight: 500;
     color: #333;
+    margin: 0;
 }
 
 .faq-icon {
     display: flex;
     align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
 }
 
 .faq-icon::before,
-.faq-icon::after,
-.faq-item i {
-   display: none;
+.faq-icon::after {
+    display: none;
+
 }
 .faq-question i {
     color: #666;
-    font-size: 16px;
     transition: transform 0.3s ease;
   }
   .faq-item.active i {

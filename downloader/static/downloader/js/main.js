@@ -215,7 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
             elementsToHide.forEach(el => el.style.display = 'none');
         }
     }
-
     async function handleVideoInfo() {
         const url = urlInput.value.trim();
         
@@ -323,6 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
     
+    
         // Find the hero section to insert the preview
         const heroSection = document.querySelector('.hero-section');
         if (heroSection) {
@@ -333,55 +333,99 @@ document.addEventListener('DOMContentLoaded', function() {
                 heroSection.appendChild(previewContainer);
             }
             previewContainer.innerHTML = previewHTML;
+    
+            // Initialize the download buttons
         }
     }
-
     // Add this function at the global scope (outside any event listeners)
-    window.handleDownload = function(quality, url) {
-        const button = event.target.closest('.download-btn-option');
-        const originalText = button.innerHTML;
-        
-        try {
-            button.disabled = true;
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+window.handleDownload = function(quality, url) {
+    const button = event.target.closest('.download-btn-option');
+    const originalText = button.innerHTML;
+    
+    try {
+        button.disabled = true;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
-            fetch('/api/process/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCsrfToken()
-                },
-                body: JSON.stringify({
-                    url: url,
-                    quality: quality,
-                    remove_watermark: true
-                })
+        fetch('/api/process/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCsrfToken()
+            },
+            body: JSON.stringify({
+                url: url,
+                quality: quality,
+                remove_watermark: true
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success' && data.download_url) {
-                    showSuccess('Starting download...');
-                    window.location.href = data.download_url;
-                } else {
-                    throw new Error('Download failed');
-                }
-            })
-            .catch(error => {
-                showError('Download failed. Please try again.');
-                console.error('Download error:', error);
-            })
-            .finally(() => {
-                button.disabled = false;
-                button.innerHTML = originalText;
-            });
-        } catch (error) {
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success' && data.download_url) {
+                showSuccess('Starting download...');
+                window.location.href = data.download_url;
+            } else {
+                throw new Error('Download failed');
+            }
+        })
+        .catch(error => {
             showError('Download failed. Please try again.');
             console.error('Download error:', error);
+        })
+        .finally(() => {
             button.disabled = false;
             button.innerHTML = originalText;
-        }
-    };
+        });
+    } catch (error) {
+        showError('Download failed. Please try again.');
+        console.error('Download error:', error);
+        button.disabled = false;
+        button.innerHTML = originalText;
+    }
+};
+function handleDownload(quality, url) {
+    const button = event.target.closest('.download-btn-option');
+    const originalText = button.innerHTML;
+    
+    try {
+        button.disabled = true;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
+        fetch('/api/process/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCsrfToken()
+            },
+            body: JSON.stringify({
+                url: url,
+                quality: quality,
+                remove_watermark: true
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success' && data.download_url) {
+                showSuccess('Starting download...');
+                window.location.href = data.download_url;
+            } else {
+                throw new Error('Download failed');
+            }
+        })
+        .catch(error => {
+            showError('Download failed. Please try again.');
+            console.error('Download error:', error);
+        })
+        .finally(() => {
+            button.disabled = false;
+            button.innerHTML = originalText;
+        });
+    } catch (error) {
+        showError('Download failed. Please try again.');
+        console.error('Download error:', error);
+        button.disabled = false;
+        button.innerHTML = originalText;
+    }
+}
     function handleApiError(error) {
         if (error.message?.includes('Api Limit')) {
             showError('Please wait a moment before trying again');
@@ -460,7 +504,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return url.toLowerCase().includes('tiktok.com/') && 
                (url.includes('/video/') || url.includes('/@'));
     }
-
     function getCsrfToken() {
         const cookies = document.cookie.split(';');
         for (let cookie of cookies) {
@@ -481,7 +524,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Footer animations and functionality
 function initFooterAnimations() {
-    
     const stats = document.querySelectorAll('.stat-number');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -519,32 +561,29 @@ function animateNumber(element) {
 
 // FAQ Functionality
 function toggleFaq(element) {
-    const faqItems = document.querySelectorAll('.faq-item');
-    const currentItem = element.closest('.faq-item');
-    const answer = currentItem.querySelector('.faq-answer');
+    const faqItem = element.closest('.faq-item');
+    const answer = faqItem.querySelector('.faq-answer');
     
-    faqItems.forEach(item => {
-        if (item !== currentItem) {
+    // Close all other FAQs
+    document.querySelectorAll('.faq-item').forEach(item => {
+        if (item !== faqItem) {
             item.classList.remove('active');
-            item.querySelector('.faq-answer').style.maxHeight = '0';
-            item.querySelector('.faq-icon i').style.transform = 'rotate(0)';
+            const otherAnswer = item.querySelector('.faq-answer');
+            otherAnswer.style.maxHeight = '0';
+            otherAnswer.style.padding = '0 20px';
         }
     });
 
-    currentItem.classList.toggle('active');
-    const isActive = currentItem.classList.contains('active');
-    const icon = currentItem.querySelector('.faq-icon i');
-    
-    answer.style.maxHeight = isActive ? `${answer.scrollHeight}px` : '0';
-    icon.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0)';
+    // Toggle current FAQ
+    faqItem.classList.toggle('active');
+    if (faqItem.classList.contains('active')) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        answer.style.padding = '20px';
+    } else {
+        answer.style.maxHeight = '0';
+        answer.style.padding = '0 20px';
+    }
 }
-
-// Add event listeners
-document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', function() {
-        toggleFaq(this);
-    });
-});
 
 // Add click event listeners to all FAQ questions
 document.addEventListener('DOMContentLoaded', function() {
@@ -578,7 +617,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
 function removeFooterAnimations() {
     const footer = document.querySelector('.site-footer');
     if (footer) {
@@ -791,7 +829,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   
-// Track download button clicks
+  // Track download button clicks
 document.querySelectorAll('.download-btn-option').forEach(button => {
     button.addEventListener('click', function() {
         gtag('event', 'download_click', {
