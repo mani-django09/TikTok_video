@@ -857,6 +857,12 @@ input:checked + .toggle-slider:before {
     display: none;
 
 }
+
+.faq-icon::before,
+.faq-icon::after,
+.faq-item i {
+   display: none;
+}
 .faq-question i {
     color: #666;
     transition: transform 0.3s ease;

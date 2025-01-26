@@ -561,30 +561,32 @@ function animateNumber(element) {
 
 // FAQ Functionality
 function toggleFaq(element) {
-    const faqItem = element.closest('.faq-item');
-    const answer = faqItem.querySelector('.faq-answer');
+    const faqItems = document.querySelectorAll('.faq-item');
+    const currentItem = element.closest('.faq-item');
+    const answer = currentItem.querySelector('.faq-answer');
     
-    // Close all other FAQs
-    document.querySelectorAll('.faq-item').forEach(item => {
-        if (item !== faqItem) {
+    faqItems.forEach(item => {
+        if (item !== currentItem) {
             item.classList.remove('active');
-            const otherAnswer = item.querySelector('.faq-answer');
-            otherAnswer.style.maxHeight = '0';
-            otherAnswer.style.padding = '0 20px';
+            item.querySelector('.faq-answer').style.maxHeight = '0';
+            item.querySelector('.faq-icon i').style.transform = 'rotate(0)';
         }
     });
 
-    // Toggle current FAQ
-    faqItem.classList.toggle('active');
-    if (faqItem.classList.contains('active')) {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-        answer.style.padding = '20px';
-    } else {
-        answer.style.maxHeight = '0';
-        answer.style.padding = '0 20px';
-    }
+    currentItem.classList.toggle('active');
+    const isActive = currentItem.classList.contains('active');
+    const icon = currentItem.querySelector('.faq-icon i');
+    
+    answer.style.maxHeight = isActive ? `${answer.scrollHeight}px` : '0';
+    icon.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0)';
 }
 
+// Add event listeners
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', function() {
+        toggleFaq(this);
+    });
+});
 // Add click event listeners to all FAQ questions
 document.addEventListener('DOMContentLoaded', function() {
     // Remove all onclick attributes from HTML elements
